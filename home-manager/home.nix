@@ -9,6 +9,9 @@
 			discord
 			wofi
 			prismlauncher
+			vscode
+			pnpm
+			nodejs
 		];
 	};
 	nixpkgs.config.allowUnfree = true;

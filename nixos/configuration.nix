@@ -34,7 +34,7 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
+  i18n.defaultLocale = "da_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
@@ -49,10 +49,24 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    windowManager.awesome = {
+      enable = true;
+      luaModules = with pkgs.luaPackages; [
+	# luarocks
+	# luadbi-mysql
+      ];
+    };
+    
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "none+awesome";
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
 	
@@ -63,10 +77,16 @@
     variant = "";
   };
 
-  services.xserver.xkbOptions = "compose:ralt";
+  services.xserver.displayManager.setupCommands = ''
+    ${pkgs.xorg.xrandr}/bin/xrandr \
+      --output DP-0 --mode 2560x1440 --rate 164.98 --pos 0x0 \
+      --output HDMI-0 --primary --mode 2560x1440 --rate 144.00 --pos 2560x0 \
+      --output DP-3 --mode 1280x1024 --rate 60.02 --pos 5120x0
+  '';
 
   # Configure console keymap
-  console.keyMap = "dk-latin1";
+#  console.keyMap = "dk-latin1";
+  console.keyMap = "dk";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -94,7 +114,7 @@
   users.users.lukas = {
     isNormalUser = true;
     description = "lukas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -111,13 +131,19 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     home-manager
-    river
-    wlr-randr
-    i3bar-river
+    pavucontrol
+    # river
+    # wlr-randr
+    # i3bar-river
   ];
 
-  programs.river = {
+  # programs.river = {
+  #  enable = true;
+  #};
+
+  virtualisation.docker.rootless = {
     enable = true;
+    setSocketVariable = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
