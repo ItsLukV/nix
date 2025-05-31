@@ -52,7 +52,7 @@ riverctl map-pointer normal $mod BTN_RIGHT resize-view
 
 for i in $(seq 1 9)
 do
-    tags=$((1 << ($i - 1)))
+    tags=$((1 << ($i - 1))
 
     # Mod+[1-9] to focus tag [0-8]
     riverctl map normal $mod $i set-focused-tags $tags
