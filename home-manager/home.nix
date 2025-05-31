@@ -23,6 +23,8 @@
 			pnpm
 			nodejs
 			spotify
+			cargo 
+			rustc
 		];
   	};
 
