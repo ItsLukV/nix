@@ -1,9 +1,9 @@
 {
         imports = [
-                ./modules/alacritty.nix
-                ./modules/bash.nix
-                ./modules/git.nix
-                ./modules/tmux.nix
+                ./alacritty.nix
+                ./bash.nix
+                ./git.nix
+                ./tmux.nix
         ];
 }
 
