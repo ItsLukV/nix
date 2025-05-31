@@ -51,6 +51,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
+    /*
     windowManager.awesome = {
       enable = true;
       luaModules = with pkgs.luaPackages; [
@@ -62,6 +63,11 @@
     displayManager = {
       sddm.enable = true;
       defaultSession = "none+awesome";
+    };
+    */
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "river";
     };
   };
 
@@ -132,14 +138,14 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     home-manager
     pavucontrol
-    # river
+    river
     # wlr-randr
     # i3bar-river
   ];
 
-  # programs.river = {
-  #  enable = true;
-  #};
+	programs.river = {
+		enable = true;
+	};
 
   virtualisation.docker.rootless = {
     enable = true;
