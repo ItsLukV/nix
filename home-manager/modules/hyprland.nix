@@ -19,11 +19,12 @@ in
 				"${mod}, Q, exec, firefox"
 				"${mod}_SHIFT, C, killactive"
 				"${mod}, Return, exec, alacritty"
-				"${mod}, mouse:272, movewindow"
-
+				"${mod}, Space, togglefloating," 
+				"${mod}, S, exec, wofi --show drun"
 			];
 
 			bindm = [
+				"${mod}, mouse:272, movewindow"
 				"${mod}, mouse:273, resizewindow"
 				"${mod} ALT, mouse:272, resizewindow"
 			];
