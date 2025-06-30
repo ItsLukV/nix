@@ -56,12 +56,12 @@
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };	
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true; # Required for Wayland sessions
   };
 
-  services.xserver.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "hyprland";
 
   # Configure console keymap
 #  console.keyMap = "dk-latin1";
