@@ -12,6 +12,7 @@
 			vscode
 			pnpm
 			nodejs
+			discord	
 		];
 	};
 	nixpkgs.config.allowUnfree = true;

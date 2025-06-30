@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -48,41 +48,20 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-	# luarocks
-	# luadbi-mysql
-      ];
-    };
-    
-    displayManager = {
-      sddm.enable = true;
-      defaultSession = "none+awesome";
-    };
-  };
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
-	
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  };	
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true; # Required for Wayland sessions
   };
 
-  services.xserver.displayManager.setupCommands = ''
-    ${pkgs.xorg.xrandr}/bin/xrandr \
-      --output DP-0 --mode 2560x1440 --rate 164.98 --pos 0x0 \
-      --output HDMI-0 --primary --mode 2560x1440 --rate 144.00 --pos 2560x0 \
-      --output DP-3 --mode 1280x1024 --rate 60.02 --pos 5120x0
-  '';
+  services.xserver.displayManager.defaultSession = "hyprland";
 
   # Configure console keymap
 #  console.keyMap = "dk-latin1";
