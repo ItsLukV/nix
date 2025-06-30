@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{config, pkgs, inputs, ...}:
 let 
 	terminal = pkgs.alacritty + "/bin/alacritty";
 	mod = "SUPER";
@@ -6,7 +6,9 @@ in
 {
 	wayland.windowManager.hyprland = {
 		enable = true;
-
+		plugins = [
+			inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+		];
 
 		settings = {
 			monitor = [
