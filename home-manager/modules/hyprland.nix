@@ -7,6 +7,13 @@ let
 	'';
 in 
 {
+home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 	wayland.windowManager.hyprland = {
 		enable = true;
     		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -14,7 +21,12 @@ in
 			inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
 		];
 
+
 		settings = {
+		env = [
+			"XCURSOR_THEME,Adwaita"
+    	"XCURSOR_SIZE,24"
+		];
 
 			exec-once = ''${startupScript}/bin/start'';
 			monitor = [
@@ -26,7 +38,7 @@ in
 			bind = [
 				"${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
 				"${mod}_SHIFT, C, killactive"
-				"${mod}, Return, exec, alacritty"
+				"${mod}, Return, exec, ${terminal}"
 				"${mod}, Space, togglefloating," 
 				"${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
 
