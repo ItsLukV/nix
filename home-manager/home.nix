@@ -1,53 +1,31 @@
-{config, pkgs, ...}: {
-	home = {
-		username = "lukas";
-		homeDirectory = "/home/lukas";
-		stateVersion = "24.11";
+{config, pkgs, inputs, ...}: {
+  home = {
+    username = "lukas";
+    homeDirectory = "/home/lukas";
+    stateVersion = "24.11";
 
-		packages = with pkgs; [
-			neofetch
-			discord
-			wofi
-			prismlauncher
-			vscode
-			pnpm
-			nodejs
-			discord	
-		];
-	};
-	nixpkgs.config.allowUnfree = true;
+    packages = with pkgs; [
+      neofetch
+      discord
+      wofi
+      prismlauncher
+      pnpm
+      nodejs
+      waybar
+      firefox
+      base16-schemes
+    ];
+  };
 
-	xdg.configFile."river" = {
-		source = ./dotfiles/river;
-		# recursive = true;
-		executable = true;
-	};	
 
-	
-	imports = [
-		./modules/alacritty.nix
-		./modules/bash.nix
-		./modules/hyprland.nix
-		./modules/git.nix
-	];
-/*
-	wayland.windowManager.hyprland = {
-		enable = true;
-
-		settings = {
-			
-			"$terminal" = "alacritty";
-			"$mod" = "SUPER";
-
-			bindm = [
-				"$mod, i, exit"
-				"$mod, Return, exec alacritty"
-				"$mod, mouse:272, movewindow"
-				"$mod, mouse:273, resizewindow"
-				"$mod ALT, mouse:272, resizewindow"
-			];
-		};
-	
-	};
-*/
+  nixpkgs.config.allowUnfree = true;
+  
+  imports = [
+    ./modules/alacritty.nix
+    ./modules/bash.nix
+    ./modules/hyprland.nix
+    ./modules/waybar.nix
+    ./modules/git.nix
+    ./modules/vscode.nix
+  ];
 }

@@ -7,9 +7,8 @@
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-
-		hyprland.url = "github:hyprwm/Hyprland";
 		
+		hyprland.url = "github:hyprwm/Hyprland";		
 	 	split-monitor-workspaces = {
       			url = "github:Duckonaut/split-monitor-workspaces";
      			inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
@@ -23,7 +22,9 @@
 		nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
 			inherit system;
 			specialArgs = { inherit inputs; };
-			modules = [ ./nixos/configuration.nix ];
+			modules = [ 
+				./nixos/configuration.nix 
+			];
 		};
 
 		homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {

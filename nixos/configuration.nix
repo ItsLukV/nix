@@ -30,6 +30,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
@@ -115,6 +116,10 @@
     # wlr-randr
     # i3bar-river
   ];
+
+  environment.variables = {
+    USE_WAYLAND_GRIM = 1;
+  };
 
   # programs.river = {
   #  enable = true;

@@ -2,6 +2,9 @@
 let 
 	terminal = pkgs.alacritty + "/bin/alacritty";
 	mod = "SUPER";
+	startupScript = pkgs.writeShellScriptBin "start" ''
+	${pkgs.waybar}/bin/waybar &
+	'';
 in 
 {
 	wayland.windowManager.hyprland = {
@@ -12,6 +15,8 @@ in
 		];
 
 		settings = {
+
+			exec-once = ''${startupScript}/bin/start'';
 			monitor = [
 				"HDMI-A-1,preferred,auto,1"
 				"DP-1,preferred,auto-left,1"
@@ -19,11 +24,11 @@ in
 			];
 
 			bind = [
-				"${mod}, Q, exec, firefox"
+				"${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
 				"${mod}_SHIFT, C, killactive"
 				"${mod}, Return, exec, alacritty"
 				"${mod}, Space, togglefloating," 
-				"${mod}, S, exec, wofi --show drun"
+				"${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
 
 				"${mod}, 1, split-workspace, 1"
 				"${mod}, 2, split-workspace, 2"
@@ -34,6 +39,16 @@ in
 				"${mod}, 7, split-workspace, 7"
 				"${mod}, 8, split-workspace, 8"
 				"${mod}, 9, split-workspace, 9"
+
+				"${mod} SHIFT, 1, split-movetoworkspace, 1"
+				"${mod} SHIFT, 2, split-movetoworkspace, 2"
+				"${mod} SHIFT, 3, split-movetoworkspace, 3"
+				"${mod} SHIFT, 4, split-movetoworkspace, 4"
+				"${mod} SHIFT, 5, split-movetoworkspace, 5"
+				"${mod} SHIFT, 6, split-movetoworkspace, 6"
+				"${mod} SHIFT, 7, split-movetoworkspace, 7"
+				"${mod} SHIFT, 8, split-movetoworkspace, 8"
+				"${mod} SHIFT, 9, split-movetoworkspace, 9"
 			];
 
 			bindm = [
@@ -44,10 +59,13 @@ in
 
 			input = {
 				kb_layout = "dk";
+				follow_mouse = 1;
 			};
 		
 			misc = {
 				disable_hyprland_logo = true;
+				disable_splash_rendering = true;
+				force_default_wallpaper = 0;
 			};
 		};
 	
