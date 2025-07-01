@@ -1,85 +1,90 @@
-{config, pkgs, inputs, ...}:
-let 
-	terminal = pkgs.alacritty + "/bin/alacritty";
-	mod = "SUPER";
-	startupScript = pkgs.writeShellScriptBin "start" ''
-	${pkgs.waybar}/bin/waybar &
-	'';
-in 
 {
-home.pointerCursor = {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  terminal = pkgs.alacritty + "/bin/alacritty";
+  mod = "SUPER";
+  startupScript = pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+  '';
+in {
+  home.pointerCursor = {
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 24;
     gtk.enable = true;
     x11.enable = true;
   };
-	wayland.windowManager.hyprland = {
-		enable = true;
-    		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-		plugins = [
-			inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-		];
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    plugins = [
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
 
+    settings = {
+			animations.enabled = true;
 
-		settings = {
-		env = [
-			"XCURSOR_THEME,Adwaita"
-    	"XCURSOR_SIZE,24"
-		];
+      env = [
+        "XCURSOR_THEME,Adwaita"
+        "XCURSOR_SIZE,24"
+      ];
 
-			exec-once = ''${startupScript}/bin/start'';
-			monitor = [
-				"HDMI-A-1,preferred,auto,1"
-				"DP-1,preferred,auto-left,1"
-				"DP-2,preferred,auto-right,1"
-			];
+      exec-once = ''${startupScript}/bin/start'';
+      monitor = [
+        "HDMI-A-1,preferred,auto,1"
+        "DP-1,preferred,auto-left,1"
+        "DP-2,preferred,auto-right,1"
+      ];
 
-			bind = [
-				"${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
-				"${mod}_SHIFT, C, killactive"
-				"${mod}, Return, exec, ${terminal}"
-				"${mod}, Space, togglefloating," 
-				"${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
+      bind = [
+        "${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
+        "${mod}_SHIFT, C, killactive"
+        "${mod}, Return, exec, ${terminal}"
+        "${mod}, Space, togglefloating,"
+        "${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
 
-				"${mod}, 1, split-workspace, 1"
-				"${mod}, 2, split-workspace, 2"
-				"${mod}, 3, split-workspace, 3"
-				"${mod}, 4, split-workspace, 4"
-				"${mod}, 5, split-workspace, 5"
-				"${mod}, 6, split-workspace, 6"
-				"${mod}, 7, split-workspace, 7"
-				"${mod}, 8, split-workspace, 8"
-				"${mod}, 9, split-workspace, 9"
+        "${mod}, 1, split-workspace, 1"
+        "${mod}, 2, split-workspace, 2"
+        "${mod}, 3, split-workspace, 3"
+        "${mod}, 4, split-workspace, 4"
+        "${mod}, 5, split-workspace, 5"
+        "${mod}, 6, split-workspace, 6"
+        "${mod}, 7, split-workspace, 7"
+        "${mod}, 8, split-workspace, 8"
+        "${mod}, 9, split-workspace, 9"
 
-				"${mod} SHIFT, 1, split-movetoworkspace, 1"
-				"${mod} SHIFT, 2, split-movetoworkspace, 2"
-				"${mod} SHIFT, 3, split-movetoworkspace, 3"
-				"${mod} SHIFT, 4, split-movetoworkspace, 4"
-				"${mod} SHIFT, 5, split-movetoworkspace, 5"
-				"${mod} SHIFT, 6, split-movetoworkspace, 6"
-				"${mod} SHIFT, 7, split-movetoworkspace, 7"
-				"${mod} SHIFT, 8, split-movetoworkspace, 8"
-				"${mod} SHIFT, 9, split-movetoworkspace, 9"
-			];
+        "${mod} SHIFT, 1, split-movetoworkspace, 1"
+        "${mod} SHIFT, 2, split-movetoworkspace, 2"
+        "${mod} SHIFT, 3, split-movetoworkspace, 3"
+        "${mod} SHIFT, 4, split-movetoworkspace, 4"
+        "${mod} SHIFT, 5, split-movetoworkspace, 5"
+        "${mod} SHIFT, 6, split-movetoworkspace, 6"
+        "${mod} SHIFT, 7, split-movetoworkspace, 7"
+        "${mod} SHIFT, 8, split-movetoworkspace, 8"
+        "${mod} SHIFT, 9, split-movetoworkspace, 9"
+      ];
 
-			bindm = [
-				"${mod}, mouse:272, movewindow"
-				"${mod}, mouse:273, resizewindow"
-				"${mod} ALT, mouse:272, resizewindow"
-			];
+      bindm = [
+        "${mod}, mouse:272, movewindow"
+        "${mod}, mouse:273, resizewindow"
+        "${mod} ALT, mouse:272, resizewindow"
+      ];
 
-			input = {
-				kb_layout = "dk";
-				follow_mouse = 1;
-			};
-		
-			misc = {
-				disable_hyprland_logo = true;
-				disable_splash_rendering = true;
-				force_default_wallpaper = 0;
-			};
-		};
-	
-	};
+      input = {
+        kb_layout = "dk";
+        follow_mouse = 1;
+      };
+
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        force_default_wallpaper = 0;
+				animate_manual_resizes = false;
+    		animate_mouse_windowdragging = false;
+      };
+    };
+  };
 }
