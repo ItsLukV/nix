@@ -15,6 +15,7 @@
       firefox
       base16-schemes
       fastfetch
+			spotify
     ];
   };
 

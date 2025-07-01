@@ -25,7 +25,7 @@ in {
     ];
 
     settings = {
-			animations.enabled = true;
+      animations.enabled = false;
 
       env = [
         "XCURSOR_THEME,Adwaita"
@@ -82,9 +82,12 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         force_default_wallpaper = 0;
-				animate_manual_resizes = false;
-    		animate_mouse_windowdragging = false;
+        animate_manual_resizes = false;
+        animate_mouse_windowdragging = false;
       };
     };
+		extraConfig = ''
+			    plugin:split-monitor-workspaces:count = 9
+		'';
   };
 }
