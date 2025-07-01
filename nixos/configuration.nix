@@ -56,13 +56,18 @@
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
   };	
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true; # Required for Wayland sessions
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true; # Required for Wayland sessions
+    };
+    defaultSession = "hyprland";
   };
 
-  services.displayManager.defaultSession = "hyprland";
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.desktopManager.gnome.enable = false;
 
   # Configure console keymap
 #  console.keyMap = "dk-latin1";
@@ -109,7 +114,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     home-manager
     pavucontrol
     # river

@@ -1,17 +1,20 @@
 {
 	description = "My system configuration";
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
 		home-manager = {
-			url = "github:nix-community/home-manager/release-24.11";
+			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		
+  		nixvim = {
+    			url = "github:nix-community/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+  		};		
 		hyprland.url = "github:hyprwm/Hyprland";		
 	 	split-monitor-workspaces = {
       			url = "github:Duckonaut/split-monitor-workspaces";
-     			inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
+     			inputs.hyprland.follows = "hyprland"; 
     		};
 	};
 
