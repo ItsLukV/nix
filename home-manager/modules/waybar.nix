@@ -2,36 +2,35 @@
   programs.waybar = {
     enable = true;
     style = ''
-      /* Main bar background */
-      window#waybar {
-        background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent */
-        color: #ffffff;
-      }
+         /* Main bar background */
+         window#waybar {
+           background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent */
+           color: #ffffff;
+         }
 
-      /* Workspace buttons */
-      #workspaces button {
-        background: rgba(255, 255, 255, 0.1);
-        color: #aaaaaa;
-        font-size: 20px;
-        padding: 0 5px;
-        border-radius: 4px;
-        margin: 2px;
-      }
+         /* Workspace buttons */
+         #workspaces button {
+           background: rgba(255, 255, 255, 0.1);
+           color: #aaaaaa;
+           font-size: 16px;
+           padding: 0 5px;
+           border-radius: 2px;
+           margin: 2px;
+         }
 
-      /* Active workspace */
-      #workspaces button.active {
-        background: rgba(255, 255, 255, 0.1);
-        color: #ffffff;
-      }
+         /* Active workspace */
+         #workspaces button.active {
+           background: rgba(255, 255, 255, 0.1);
+           color: #ffffff;
+         }
 
-      /* Hover effect */
-      #workspaces button:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
+         /* Hover effect */
+         #workspaces button:hover {
+           background: rgba(255, 255, 255, 0.2);
+         }
     '';
     settings = {
       mainBar = {
-        # Note: Some setups use "mainBar" instead of "mainbar"
         layer = "top";
         position = "top";
         height = 0;
@@ -42,12 +41,15 @@
           "clock"
         ];
         modules-right = [
+          "network"
+          "custom/divider"
           "cpu"
           "custom/divider"
           "memory"
         ];
         "hyprland/workspaces" = {
           format = "{icon}";
+					show-empty-workspaces = false;
           format-active = "{icon}";
           format-icons = {
             "1" = "1";
@@ -59,24 +61,27 @@
             "7" = "7";
             "8" = "8";
             "9" = "9";
-            "10" = "1";
-            "11" = "2";
-            "12" = "3";
-            "13" = "4";
-            "14" = "5";
-            "15" = "6";
-            "16" = "7";
-            "17" = "8";
-            "18" = "9";
-            "19" = "1";
-            "20" = "2";
-            "21" = "3";
-            "22" = "4";
-            "23" = "5";
-            "24" = "6";
-            "25" = "7";
-            "26" = "8";
-            "27" = "9";
+            "10" = "0";
+            "11" = "1";
+            "12" = "2";
+            "13" = "3";
+            "14" = "4";
+            "15" = "5";
+            "16" = "6";
+            "17" = "7";
+            "18" = "8";
+            "19" = "9";
+            "20" = "0";
+            "21" = "1";
+            "22" = "2";
+            "23" = "3";
+            "24" = "4";
+            "25" = "5";
+            "26" = "6";
+            "27" = "7";
+						"28" = "8";
+						"29" = "9";
+						"30" = "0";
           };
         };
         "custom/divider" = {
@@ -89,7 +94,24 @@
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-       		interval = 1; 
+          interval = 1;
+        };
+        cpu = {
+          interval = 1;
+          format = "CPU: {}%";
+          max-length = 10;
+          on-click = "";
+        };
+        memory = {
+          interval = 1;
+          format = "Mem: {}%";
+          format-alt = "{used:0.1f}G";
+          max-length = 10;
+        };
+				network = {
+					format = "{bandwidthUpBits:04} ↑↓ {bandwidthDownBits:04}"; 
+					interval = 1;
+					tooltip = false;
 				};
       };
     };

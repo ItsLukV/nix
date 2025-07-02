@@ -25,7 +25,18 @@ in {
     ];
 
     settings = {
-      animations.enabled = false;
+
+			general = {
+				gaps_in = 10;
+				gaps_out = 10;
+			};
+
+      animations = {
+        enabled = true;
+        animation = [
+          "workspaces, 0, 1, default"
+        ];
+      };
 
       env = [
         "XCURSOR_THEME,Adwaita"
@@ -86,8 +97,8 @@ in {
         animate_mouse_windowdragging = false;
       };
     };
-		extraConfig = ''
-			    plugin:split-monitor-workspaces:count = 9
-		'';
+    extraConfig = ''
+      plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
+    '';
   };
 }
