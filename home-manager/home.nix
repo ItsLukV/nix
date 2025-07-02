@@ -32,5 +32,6 @@
     ./modules/git.nix
     ./modules/vscode.nix
     ./modules/nixvim.nix
+		./modules/hyprshot.nix
   ];
 }
