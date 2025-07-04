@@ -4,6 +4,7 @@
   inputs,
   ...
 }: {
+nixpkgs.config.allowUnfree = true;
   home = {
     username = "lukas";
     homeDirectory = "/home/lukas";
@@ -23,8 +24,6 @@
       spotify
     ];
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim

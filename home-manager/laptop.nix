@@ -1,12 +1,12 @@
 {
-
   config,
   pkgs,
   inputs,
   ...
 }: {
-	import = [
-		./common.nix
-	];
-	wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];
+  imports = [
+    ./common.nix
+  ];
+  wayland.windowManager.hyprland.settings.monitor = [",preferred,auto,1"];
+#  programs.bash.shellAliases.hms = "home-manager switch --flake ~/nix#lukas@laptop";
 }
