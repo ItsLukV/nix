@@ -30,12 +30,21 @@
 			];
 		};
 
-		homeConfigurations.lukas = home-manager.lib.homeManagerConfiguration {
+		homeConfigurations.pc = home-manager.lib.homeManagerConfiguration {
 			pkgs = nixpkgs.legacyPackages.${system};
 			extraSpecialArgs = { inherit inputs; };
 			modules = [ 
-				./home-manager/home.nix 
+				./home-manager/pc.nix 
 			];
+		};
+
+		homeConfigurations.laptop = home-manager.lib.homeManagerConfiguration {
+			pkgs = nixpkgs.legacyPackages.${system};
+			extraSpecialArgs = { inherit inputs; };
+			modules = [ 
+				./home-manager/laptop.nix 
+			];
+
 		};
 	};
 }

@@ -25,11 +25,10 @@ in {
     ];
 
     settings = {
-
-			general = {
-				gaps_in = 10;
-				gaps_out = 10;
-			};
+      general = {
+        gaps_in = 10;
+        gaps_out = 10;
+      };
 
       animations = {
         enabled = true;
@@ -44,12 +43,14 @@ in {
       ];
 
       exec-once = ''${startupScript}/bin/start'';
+      #      monitor = [",preferred,auto,1"];
+      /*
       monitor = [
         "HDMI-A-1,preferred,auto,1"
         "DP-1,preferred,auto-left,1"
         "DP-2,preferred,auto-right,1"
       ];
-
+      */
       bind = [
         "${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
         "${mod}_SHIFT, C, killactive"
@@ -87,6 +88,11 @@ in {
       input = {
         kb_layout = "dk";
         follow_mouse = 1;
+				sensitivity = 2;
+        touchpad = {
+          natural_scroll = true; # Enable "natural" scrolling (like macOS)
+          #natural_scroll = false; # Disable (traditional scrolling)
+        };
       };
 
       misc = {

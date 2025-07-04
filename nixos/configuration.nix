@@ -122,15 +122,6 @@
     # i3bar-river
   ];
 
-  fonts = {
-    packages = with pkgs; [
-      jetbrains-mono
-      nerdfonts.override { fonts = [ "JetBrainsMono" ]; }  # Nerd Font variant
-    ];
-    fontconfig.defaultFonts = {
-      monospace = [ "JetBrainsMono Nerd Font Mono" ];  # Set as default monospace
-    };
-  };
   environment.variables = {
     USE_WAYLAND_GRIM = 1;
   };

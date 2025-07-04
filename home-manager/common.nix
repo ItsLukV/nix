@@ -1,10 +1,14 @@
-{config, pkgs, inputs, ...}: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   home = {
     username = "lukas";
     homeDirectory = "/home/lukas";
     stateVersion = "24.11";
 
-		
     packages = with pkgs; [
       neofetch
       discord
@@ -16,13 +20,12 @@
       firefox
       base16-schemes
       fastfetch
-			spotify
+      spotify
     ];
   };
 
-
   nixpkgs.config.allowUnfree = true;
-  
+
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./modules/alacritty.nix
@@ -32,6 +35,6 @@
     ./modules/git.nix
     ./modules/vscode.nix
     ./modules/nixvim.nix
-		./modules/hyprshot.nix
+    ./modules/hyprshot.nix
   ];
 }

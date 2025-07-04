@@ -2,32 +2,32 @@
   programs.waybar = {
     enable = true;
     style = ''
-         /* Main bar background */
-         window#waybar {
-           background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent */
-           color: #ffffff;
-         }
+      /* Main bar background */
+      window#waybar {
+        background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent */
+        color: #ffffff;
+      }
 
-         /* Workspace buttons */
-         #workspaces button {
-           background: rgba(255, 255, 255, 0.1);
-           color: #aaaaaa;
-           font-size: 16px;
-           padding: 0 5px;
-           border-radius: 2px;
-           margin: 2px;
-         }
+      /* Workspace buttons */
+      #workspaces button {
+        background: rgba(255, 255, 255, 0.1);
+        color: #aaaaaa;
+        font-size: 16px;
+        padding: 0 5px;
+        border-radius: 2px;
+        margin: 2px;
+      }
 
-         /* Active workspace */
-         #workspaces button.active {
-           background: rgba(255, 255, 255, 0.1);
-           color: #ffffff;
-         }
+      /* Active workspace */
+      #workspaces button.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
 
-         /* Hover effect */
-         #workspaces button:hover {
-           background: rgba(255, 255, 255, 0.2);
-         }
+      /* Hover effect */
+      #workspaces button:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
     '';
     settings = {
       mainBar = {
@@ -41,6 +41,8 @@
           "clock"
         ];
         modules-right = [
+          "battery"
+          "custom/divider"
           "network"
           "custom/divider"
           "cpu"
@@ -49,7 +51,7 @@
         ];
         "hyprland/workspaces" = {
           format = "{icon}";
-					show-empty-workspaces = false;
+          show-empty-workspaces = false;
           format-active = "{icon}";
           format-icons = {
             "1" = "1";
@@ -79,9 +81,9 @@
             "25" = "5";
             "26" = "6";
             "27" = "7";
-						"28" = "8";
-						"29" = "9";
-						"30" = "0";
+            "28" = "8";
+            "29" = "9";
+            "30" = "0";
           };
         };
         "custom/divider" = {
@@ -108,11 +110,14 @@
           format-alt = "{used:0.1f}G";
           max-length = 10;
         };
-				network = {
-					format = "{bandwidthUpBits:04} ↑↓ {bandwidthDownBits:04}"; 
-					interval = 1;
-					tooltip = false;
-				};
+        network = {
+          format = "{bandwidthUpBits:04} ↑↓ {bandwidthDownBits:04}";
+          interval = 1;
+          tooltip = false;
+        };
+        battery = {
+          format = "Battery: {capacity}%"; 
+        };
       };
     };
   };
