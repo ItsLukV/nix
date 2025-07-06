@@ -6,7 +6,7 @@
       updatetime = 100;
       number = true;
       relativenumber = true;
-
+			mouse = "";
       autoindent = true;
       shiftwidth = 2;
       tabstop = 2;

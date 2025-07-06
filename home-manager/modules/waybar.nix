@@ -41,13 +41,13 @@
           "clock"
         ];
         modules-right = [
-          "battery"
-          "custom/divider"
           "network"
           "custom/divider"
           "cpu"
           "custom/divider"
           "memory"
+          "custom/divider"
+          "pulseaudio"
         ];
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -92,7 +92,7 @@
           tooltip = false;
         };
         clock = {
-          format = "{:%H:%M:%S | %d/%m}";
+          format = "{:%H:%M:%S | %d/%m/%y}";
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
@@ -106,8 +106,8 @@
         };
         memory = {
           interval = 1;
-          format = "Mem: {}%";
-          format-alt = "{used:0.1f}G";
+          format-alt = "Mem: {}% ";
+          format = "Mem: {used:0.1f}G ";
           max-length = 10;
         };
         network = {
@@ -116,7 +116,19 @@
           tooltip = false;
         };
         battery = {
-          format = "Battery: {capacity}%"; 
+          format = "Battery: {capacity}%";
+        };
+        pulseaudio = {
+          format = "{icon} {volume}%"; 
+          format-muted = "🔇 {volume}%";
+          format-icons = {
+            default = ["🔈" "🔉" "🔊"];
+          };
+          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "pavucontrol";
+          scroll-step = 5;
+          tooltip = true;
+          tooltip-format = "{desc} {volume}% ({format_source})";
         };
       };
     };

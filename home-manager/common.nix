@@ -13,7 +13,6 @@ nixpkgs.config.allowUnfree = true;
     packages = with pkgs; [
       neofetch
       discord
-      wofi
       prismlauncher
       pnpm
       nodejs
@@ -35,5 +34,6 @@ nixpkgs.config.allowUnfree = true;
     ./modules/vscode.nix
     ./modules/nixvim.nix
     ./modules/hyprshot.nix
+		./modules/wofi.nix
   ];
 }

@@ -88,8 +88,9 @@ in {
       input = {
         kb_layout = "dk";
         follow_mouse = 1;
-				sensitivity = 2;
+				sensitivity = 1;
         touchpad = {
+					disable_while_typing = true;
           natural_scroll = true; # Enable "natural" scrolling (like macOS)
           #natural_scroll = false; # Disable (traditional scrolling)
         };
