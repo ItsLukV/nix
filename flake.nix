@@ -50,7 +50,7 @@
 
     # Standalone Home Manager configurations
     homeConfigurations = {
-      "laptop" = home-manager.lib.homeManagerConfiguration {
+      laptop = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
@@ -58,7 +58,7 @@
         ];
       };
 
-      "pc" = home-manager.lib.homeManagerConfiguration {
+      pc = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [

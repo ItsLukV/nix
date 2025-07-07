@@ -11,15 +11,10 @@ nixpkgs.config.allowUnfree = true;
     stateVersion = "24.11";
 
     packages = with pkgs; [
-      neofetch
+      fastfetch
       discord
       prismlauncher
-      pnpm
-      nodejs
       waybar
-      firefox
-      base16-schemes
-      fastfetch
       spotify
     ];
   };
