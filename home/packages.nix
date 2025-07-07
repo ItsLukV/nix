@@ -5,6 +5,7 @@
     prismlauncher
     waybar
     spotify
+		tmux
   ];
 in {
   nixpkgs.config.allowUnfree = true;

@@ -62,6 +62,7 @@
         extraSpecialArgs = commonArgs;
         modules = [
           ./hosts/laptop/home.nix
+					./home
         ];
       };
 
@@ -70,6 +71,7 @@
         extraSpecialArgs = commonArgs;
         modules = [
           ./hosts/pc/pc.nix
+					./home
         ];
       };
     };

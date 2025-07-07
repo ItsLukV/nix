@@ -43,7 +43,7 @@ in {
         "XCURSOR_SIZE,24"
       ];
 
-      exec-once = lib.mkDefault ["${startupScript}/bin/start"];
+      exec-once = ["${startupScript}/bin/start"];
       #      monitor = [",preferred,auto,1"];
       /*
       monitor = [
@@ -58,6 +58,7 @@ in {
         "${mod}, Return, exec, ${terminal}"
         "${mod}, Space, togglefloating,"
         "${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
+        "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
         "${mod}, 1, split-workspace, 1"
         "${mod}, 2, split-workspace, 2"

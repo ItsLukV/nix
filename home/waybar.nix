@@ -101,8 +101,7 @@
         cpu = {
           interval = 1;
           format = "CPU: {}%";
-          max-length = 10;
-          on-click = "";
+          max-length = 15;
         };
         memory = {
           interval = 1;
@@ -116,10 +115,16 @@
           tooltip = false;
         };
         battery = {
-          format = "Battery: {capacity}%";
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "Battery {capacity}%";
+          format-charging = "Charging: {capacity}%";
+          format-plugged = "Plugged: {capacity}%";
         };
         pulseaudio = {
-          format = "{icon} {volume}%"; 
+          format = "{icon} {volume}%";
           format-muted = "🔇 {volume}%";
           format-icons = {
             default = ["🔈" "🔉" "🔊"];
