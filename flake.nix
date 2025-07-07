@@ -18,10 +18,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... } @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    commonArgs = { inherit inputs; };
+    commonArgs = {inherit inputs;};
   in {
     # NixOS system configurations
     nixosConfigurations = {
@@ -29,7 +34,8 @@
         inherit system;
         specialArgs = commonArgs;
         modules = [
-          ./nixos/configuration.nix
+          ./hosts/laptop/configuration.nix
+					./nixos
           {
             networking.hostName = "laptop";
           }
@@ -40,7 +46,8 @@
         inherit system;
         specialArgs = commonArgs;
         modules = [
-          ./nixos/configuration.nix
+          ./nixos/pc/configuration.nix
+					./nixos
           {
             networking.hostName = "pc";
           }
@@ -54,7 +61,7 @@
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
-          ./home-manager/laptop.nix
+          ./hosts/laptop/home.nix
         ];
       };
 
@@ -62,7 +69,7 @@
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
-          ./home-manager/pc.nix
+          ./hosts/pc/pc.nix
         ];
       };
     };

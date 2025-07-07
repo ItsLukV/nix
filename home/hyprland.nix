@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   terminal = pkgs.alacritty + "/bin/alacritty";
@@ -42,7 +43,7 @@ in {
         "XCURSOR_SIZE,24"
       ];
 
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = lib.mkDefault ["${startupScript}/bin/start"];
       #      monitor = [",preferred,auto,1"];
       /*
       monitor = [
@@ -88,9 +89,9 @@ in {
       input = {
         kb_layout = "dk";
         follow_mouse = 1;
-				sensitivity = 1;
+        sensitivity = 1;
         touchpad = {
-					disable_while_typing = true;
+          disable_while_typing = true;
           natural_scroll = true; # Enable "natural" scrolling (like macOS)
           #natural_scroll = false; # Disable (traditional scrolling)
         };
