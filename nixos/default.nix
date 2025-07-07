@@ -11,15 +11,25 @@
   # Nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-fonts.packages = with pkgs; [
-  nerd-fonts.fira-code
-                nerd-fonts.jetbrains-mono
-        ];
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+  ];
 
-imports = [
-./nvf.nix
-];
+  # Vim
+  imports = [
+    ./nvf.nix
+  ];
 
+  # Automatic cleanup
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-older-than 10d";
+  nix.settings.auto-optimise-store = true;
+
+
+  # Nvidia driver
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.open = false;
   services.xserver.videoDrivers = ["nvidia"];
