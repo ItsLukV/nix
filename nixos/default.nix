@@ -11,6 +11,15 @@
   # Nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+fonts.packages = with pkgs; [
+  nerd-fonts.fira-code
+                nerd-fonts.jetbrains-mono
+        ];
+
+imports = [
+./nvf.nix
+];
+
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.open = false;
   services.xserver.videoDrivers = ["nvidia"];
@@ -44,9 +53,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

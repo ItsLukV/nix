@@ -13,7 +13,7 @@
     ./waybar.nix
     ./git.nix
     ./vscode.nix
-    ./nixvim.nix
+#    ./nixvim.nix
     ./hyprshot.nix
     ./wofi.nix
   ];

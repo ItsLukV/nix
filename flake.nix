@@ -7,10 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
+    
+		nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		nvf.url = "github:notashelf/nvf";
+
     hyprland.url = "github:hyprwm/Hyprland";
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
@@ -22,6 +26,7 @@
     self,
     nixpkgs,
     home-manager,
+		nvf,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -30,12 +35,15 @@
   in {
     # NixOS system configurations
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
+      
+
+			laptop = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = commonArgs;
         modules = [
           ./hosts/laptop/configuration.nix
 					./nixos
+					nvf.nixosModules.default
           {
             networking.hostName = "laptop";
           }
