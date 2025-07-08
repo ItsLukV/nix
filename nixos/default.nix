@@ -89,6 +89,7 @@
     firefox
     home-manager
     pavucontrol
+    htop
   ];
 
   virtualisation.docker.rootless = {

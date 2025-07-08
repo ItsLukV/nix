@@ -5,18 +5,24 @@
   lib,
   ...
 }: let
+  wallpaper = ../assets/weeb.png;
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
+    swww-daemon &
+    swww img ${wallpaper}
   '';
 in {
-  home.pointerCursor = {
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
+  home = {
+    packages = [ pkgs.swww ];
+    pointerCursor = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+      size = 24;
+      gtk.enable = true;
+      x11.enable = true;
+    };
   };
   wayland.windowManager.hyprland = {
     enable = true;
