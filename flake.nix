@@ -35,8 +35,6 @@
   in {
     # NixOS system configurations
     nixosConfigurations = {
-      
-
 			laptop = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = commonArgs;
@@ -54,8 +52,9 @@
         inherit system;
         specialArgs = commonArgs;
         modules = [
-          ./nixos/pc/configuration.nix
+          ./hosts/pc/configuration.nix
 					./nixos
+					nvf.nixosModules.default
           {
             networking.hostName = "pc";
           }
@@ -78,7 +77,7 @@
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
-          ./hosts/pc/pc.nix
+          ./hosts/pc/home.nix
 					./home
         ];
       };
