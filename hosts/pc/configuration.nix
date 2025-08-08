@@ -23,6 +23,11 @@
     defaultSession = "hyprland";
   };
 
+  swapDevices = [{
+    device = "/swapfile";
+    size = 16 * 1024; # 16GB
+  }];
+
   services.displayManager.gdm.enable = false;
   services.desktopManager.gnome.enable = false;
   environment.variables = {
