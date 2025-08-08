@@ -24,6 +24,7 @@
         "files.autoSave" = "afterDelay";
         "files.autoSaveDelay" = 1000;
         "disable-hardware-acceleration" = true;
+        "editor.mouseWheelZoom" = true;
       };
     };
   };
