@@ -41,7 +41,7 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "da_DK.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
