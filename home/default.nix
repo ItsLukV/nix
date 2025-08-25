@@ -12,7 +12,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./git.nix
-    ./vscode.nix
+#    ./vscode.nix
 #    ./nixvim.nix
     ./hyprshot.nix
     ./wofi.nix
