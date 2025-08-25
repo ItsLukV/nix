@@ -55,9 +55,6 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
-  services.displayManager.gdm.enable = false;
-  services.desktopManager.gnome.enable = false;
-
   # Configure console keymap
   console.keyMap = "dk";
 
