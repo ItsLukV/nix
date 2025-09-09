@@ -20,67 +20,31 @@
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-		nvf,
+    nvf,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     commonArgs = {inherit inputs;};
-  in {
-    # NixOS system configurations
-    nixosConfigurations = {
-			laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = commonArgs;
-        modules = [
-          ./hosts/laptop/configuration.nix
-					./nixos
-					nvf.nixosModules.default
-          {
-            networking.hostName = "laptop";
-          }
-        ];
-      };
-
-      pc = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = commonArgs;
-        modules = [
-          ./hosts/pc/configuration.nix
-					./nixos
-					nvf.nixosModules.default
-          {
-            networking.hostName = "pc";
-          }
-        ];
-      };
+    mkSystem = import ./lib/mksystem.nix {
+      inherit nixpkgs inputs;
     };
-
-    # Standalone Home Manager configurations
-    homeConfigurations = {
-      laptop = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = commonArgs;
-        modules = [
-          ./hosts/laptop/home.nix
-					./home
-        ];
-      };
-
-      pc = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = commonArgs;
-        modules = [
-          ./hosts/pc/home.nix
-					./home
-        ];
-      };
+  in {
+    nixosConfigurations.wsl = mkSystem "wsl" {
+      system = "x86_64-linux";
+      user   = "lukas";
+      wsl    = true;
     };
   };
 }

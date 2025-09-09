@@ -1,13 +1,15 @@
-{pkgs, ...}: let
+{pkgs, lib, isWSL, ...}: let
   default = with pkgs; [
     fastfetch
+    tmux
+  ];
+  gui = with pkgs; [
     discord
     prismlauncher
     waybar
     spotify
-		tmux
   ];
 in {
   nixpkgs.config.allowUnfree = true;
-  home.packages = default;
+  home.packages = default ++ (lib.optionals (!isWSL) gui);
 }
