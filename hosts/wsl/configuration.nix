@@ -10,8 +10,12 @@
 {
 
   wsl.enable = true;
-  wsl.defaultUser = "nixos";
+  wsl.defaultUser = "lukas";
 
+  environment.systemPackages = [
+    pkgs.wget
+  ];
+  programs.nix-ld.enable = true;
   # nix.package = pkgs.nixUnstable;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

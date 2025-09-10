@@ -2,6 +2,7 @@
   default = with pkgs; [
     fastfetch
     tmux
+    htop
   ];
   gui = with pkgs; [
     discord
@@ -10,6 +11,5 @@
     spotify
   ];
 in {
-  nixpkgs.config.allowUnfree = true;
   home.packages = default ++ (lib.optionals (!isWSL) gui);
 }

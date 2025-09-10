@@ -16,7 +16,6 @@ let
   userOSConfig = ../nixos/nixos.nix;
   userHMConfig = ../home/${user}/home-manager.nix;
 
-  home-manager = inputs.home-manager.nixosModules;
 in nixpkgs.lib.nixosSystem rec {
   inherit system;
 
@@ -31,12 +30,18 @@ in nixpkgs.lib.nixosSystem rec {
 
     machineConfig 
     userOSConfig
-    home-manager.home-manager {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${user} = import userHMConfig {
-        isWSL = isWSL;
-        inputs = inputs;
+
+    # Home Manager Config
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = {
+          inherit inputs;
+          inherit isWSL;
+        };
+        users.${user}.imports = [ userHMConfig ];
       };
     }
     {
