@@ -21,6 +21,7 @@
 
       # Keep settings simple & top-level (not profiles.*)
       userSettings = {
+        "editor.fontSize" = 20;
         "files.autoSave" = "afterDelay";
         "files.autoSaveDelay" = 1000;
         "disable-hardware-acceleration" = true;

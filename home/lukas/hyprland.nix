@@ -113,6 +113,14 @@ in {
       };
     };
     extraConfig = ''
+      device {
+        name=logitech-usb-receiver
+        sensitivity=-0.3
+      }
+      device {
+        name=logitech-usb-receiver-keyboard-1
+        sensitivity=-0.3
+      }
       plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
     '';
   };
