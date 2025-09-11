@@ -7,12 +7,22 @@
   networking.hostName = "pc";
   system.stateVersion = "25.05";
   imports = [
-    ./hardware-configuration.nix
+    ./hardware/hardware-pc.nix
+    ./shared.nix
   ];
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings.monitor = [
+      "HDMI-A-1,preferred,auto,1"
+      "DP-1,preferred,auto-left,1"
+      "DP-2,preferred,auto-right,1"
+    ];
   };
 
   services.displayManager = {

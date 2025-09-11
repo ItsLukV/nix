@@ -46,5 +46,10 @@
       user   = "lukas";
       wsl    = true;
     };
+
+    nixosConfigurations.pc = mkSystem "pc" {
+      system = "x86_64-linux";
+      user = "lukas";
+    };
   };
 }

@@ -17,11 +17,6 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # Vim
-  imports = [
-    ./nvf.nix
-  ];
-
   # Automatic cleanup
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";

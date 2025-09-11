@@ -12,8 +12,8 @@ let
   isWSL = wsl;
 
   # The config files for this system.
-  machineConfig = ../hosts/${name}/configuration.nix;
-  userOSConfig = ../nixos/nixos.nix;
+  machineConfig = ../hosts/${name}.nix;
+  userOSConfig = ../nixos/${user}/nixos.nix;
   userHMConfig = ../home/${user}/home-manager.nix;
 
 in nixpkgs.lib.nixosSystem rec {
