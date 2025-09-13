@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  wallpaper = ../assets/wallpaper.png;
+  wallpaper = ../../assets/wallpaper.png;
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
@@ -43,6 +43,12 @@ in {
           "workspaces, 0, 1, default"
         ];
       };
+
+      settings.monitor = [
+        "HDMI-A-1,preferred,auto,1"
+        "DP-1,preferred,auto-left,1"
+        "DP-2,preferred,auto-right,1"
+      ];
 
       env = [
         "XCURSOR_THEME,Adwaita"
