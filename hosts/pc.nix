@@ -7,7 +7,8 @@
   networking.hostName = "pc";
   system.stateVersion = "25.05";
   imports = [
-    ./hardware-configuration.nix
+    ./hardware/hardware-pc.nix
+    ./shared.nix
   ];
   programs.hyprland = {
     enable = true;
