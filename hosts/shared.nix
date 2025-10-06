@@ -81,6 +81,7 @@
     home-manager
     pavucontrol
     htop
+    go
   ];
 
   virtualisation.docker.rootless = {

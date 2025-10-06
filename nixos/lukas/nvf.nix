@@ -32,6 +32,7 @@
           nix.enable = true;
           ts.enable = true;
           rust.enable = true;
+          clang.enable = true;
         };
         options = {
           tabstop = 2;
