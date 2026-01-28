@@ -11,14 +11,19 @@
     ./git.nix
     ./bash.nix
   ] ++ (lib.optionals (!isWSL) [
+    # Walker
     inputs.walker.homeManagerModules.default
     ./walker.nix
-    ./nh.nix
-    ./vscode.nix
-    ./alacritty.nix
+    # Hyprland
     ./hyprland.nix
     ./waybar.nix
     ./hyprshot.nix
-    ./wofi.nix
+    # ./wofi.nix
+
+    # Misc
+    ./nh.nix
+    ./vscode.nix
+    ./jetbrains.nix
+    ./alacritty.nix
   ]);
 }
