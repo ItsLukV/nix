@@ -11,6 +11,9 @@
     ./git.nix
     ./bash.nix
   ] ++ (lib.optionals (!isWSL) [
+    inputs.walker.homeManagerModules.default
+    ./walker.nix
+    ./nh.nix
     ./vscode.nix
     ./alacritty.nix
     ./hyprland.nix

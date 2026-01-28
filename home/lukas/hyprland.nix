@@ -27,12 +27,12 @@ in {
   
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     
     # Correct plugin reference
     plugins = [
-      (inputs.hyprland.packages.${pkgs.system}.hyprland + "/lib/libhyprgroup.so")
-      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland + "/lib/libhyprgroup.so")
+      inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
     ];
 
     settings = {
@@ -79,7 +79,8 @@ in {
         "$mainMod SHIFT, C, killactive"
         "$mainMod, Return, exec, ${terminal}"
         "$mainMod, Space, togglefloating,"
-        "$mainMod, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
+        #"$mainMod, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
+        "$mainMod, S, exec, ${pkgs.walker}/bin/walker"
         "$mainMod, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
         # Grouping keybinds - these are correct

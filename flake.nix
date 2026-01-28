@@ -22,6 +22,13 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    elephant.url = "github:abenz1267/elephant";
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,9 +42,6 @@
     nvf,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    commonArgs = {inherit inputs;};
     mkSystem = import ./lib/mksystem.nix {
       inherit nixpkgs inputs;
     };

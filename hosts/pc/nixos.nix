@@ -7,12 +7,12 @@
   networking.hostName = "pc";
   system.stateVersion = "25.05";
   imports = [
-    ./hardware/hardware-pc.nix
-    ./shared.nix
+    ./hardware-pc.nix
+    ../shared.nix
   ];
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
     xwayland.enable = true;
   };
 

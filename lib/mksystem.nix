@@ -18,11 +18,13 @@ let
   userHMConfig = ../home/${user}/home-manager.nix;
 
 in nixpkgs.lib.nixosSystem rec {
-  inherit system;
+    #  inherit system;
 
   modules = [
     # Allow unfree packages.
     { nixpkgs.config.allowUnfree = true; }
+
+    { nixpkgs.hostPlatform = system; }
 
     inputs.nvf.nixosModules.default
 
@@ -50,7 +52,8 @@ in nixpkgs.lib.nixosSystem rec {
     }
     {
       config._module.args = {
-        currentSystem = system;
+          #     currentSystem = system;
+          currentSystem = system;
         currentSystemName = name;
         currentSystemUser = user;
         isWSL = isWSL;
