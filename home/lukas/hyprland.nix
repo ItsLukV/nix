@@ -36,14 +36,6 @@ in {
     ];
 
     settings = {
-      # Monitor configuration should be at the top level, not in settings.monitor
-      /*
-      monitor = [
-        "HDMI-A-1,preferred,auto,1"
-        "DP-1,preferred,auto-left,1"
-        "DP-2,preferred,auto-right,1"
-      ];
-      */
       general = {
         border_size = 2;
         gaps_in = 0;
@@ -134,17 +126,27 @@ in {
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
       };
+      device = [
+        {
+          name = "synps/2-synaptics-touchpad";
+          sensitivity = 0.5; 
+        }
+        {
+          name = "tpps/2-elan-trackpoint";
+          sensitivity = 0.2;
+        }
+        {
+          name="logitech-usb-receiver";
+          sensitivity=-0.3;
+        }
+        {
+          name="logitech-usb-receiver-keyboard-1";
+          sensitivity=-0.3;
+        }
+      ];
     };
     
     extraConfig = ''
-      device {
-        name=logitech-usb-receiver
-        sensitivity=-0.3
-      }
-      device {
-        name=logitech-usb-receiver-keyboard-1
-        sensitivity=-0.3
-      }
       plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
     '';
   };
