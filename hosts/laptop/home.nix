@@ -12,8 +12,8 @@
       "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
     ];
   };
-  programs.waybar.settings.mainBar.modules-right = [
-    "battery"
+  programs.waybar.settings.mainBar.modules-right = lib.mkAfter [
     "custom/divider"
+    "battery"
   ];
 }

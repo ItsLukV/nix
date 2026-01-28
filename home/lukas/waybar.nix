@@ -100,7 +100,7 @@
         };
         cpu = {
           interval = 1;
-          format = "CPU: {}%";
+          format = "CPU: {usage}%";
           max-length = 15;
         };
         memory = {
