@@ -7,12 +7,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
+    /*
 		nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    */
 		nvf.url = "github:notashelf/nvf";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -51,5 +52,11 @@
       system = "x86_64-linux";
       user = "lukas";
     };
+
+    nixosConfigurations.laptop = mkSystem "laptop" {
+      system = "x86_64-linux";
+      user = "lukas";
+    };
+
   };
 }

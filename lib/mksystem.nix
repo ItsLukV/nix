@@ -12,7 +12,8 @@ let
   isWSL = wsl;
 
   # The config files for this system.
-  machineConfig = ../hosts/${name}.nix;
+  machineConfig = ../hosts/${name}/nixos.nix;
+  machineHomeConfig = ../hosts/${name}/home.nix;
   userOSConfig = ../nixos/${user}/nixos.nix;
   userHMConfig = ../home/${user}/home-manager.nix;
 
@@ -41,7 +42,10 @@ in nixpkgs.lib.nixosSystem rec {
           inherit inputs;
           inherit isWSL;
         };
-        users.${user}.imports = [ userHMConfig ];
+        users.${user}.imports = [ 
+          machineHomeConfig
+          userHMConfig 
+        ];
       };
     }
     {

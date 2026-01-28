@@ -37,12 +37,13 @@ in {
 
     settings = {
       # Monitor configuration should be at the top level, not in settings.monitor
+      /*
       monitor = [
         "HDMI-A-1,preferred,auto,1"
         "DP-1,preferred,auto-left,1"
         "DP-2,preferred,auto-right,1"
       ];
-
+      */
       general = {
         border_size = 2;
         gaps_in = 0;
@@ -71,7 +72,7 @@ in {
       };
 
       # Use consistent variable name for modifier key
-      "$mainMod" = "SUPER";
+      "$mainMod" = mod; 
 
       bind = [
         "$mainMod, Q, exec, ${pkgs.firefox}/bin/firefox"

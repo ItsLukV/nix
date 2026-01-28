@@ -7,7 +7,7 @@
         family = "DejaVu Sans Mono";
         style = "Book";
       };
-      size = 20;
+      size = 12;
     };
   };
 };
