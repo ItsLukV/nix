@@ -9,7 +9,6 @@
     prismlauncher
     waybar
     spotify
-    
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);

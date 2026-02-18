@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
         programs.alacritty = {
   enable = true;
   settings = {
@@ -7,7 +7,7 @@
         family = "DejaVu Sans Mono";
         style = "Book";
       };
-      size = 12;
+      size = lib.mkDefault 12;
     };
   };
 };

@@ -9,6 +9,7 @@
   imports = [
     ./hardware-pc.nix
     ../shared.nix
+    ./libreoffice.nix
   ];
   programs.hyprland = {
     enable = true;

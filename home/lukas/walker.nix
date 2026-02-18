@@ -16,20 +16,20 @@ programs.walker = {
 
   # Set `programs.walker.config.theme="your theme name"` to choose the default theme
   themes = {
-    "your theme name" = {
+      # "your theme name" = {
       # Check out the default css theme as an example https://github.com/abenz1267/walker/blob/master/resources/themes/default/style.css
-      style = " /* css */ ";
+      #style = " /* css */ ";
 
       # Check out the default layouts for examples https://github.com/abenz1267/walker/tree/master/resources/themes/default
-      layouts = {
-        "layout" = " <!-- xml --> ";
-        "item_calc" = " <!-- xml --> ";
+      # layouts = {
+      #  "layout" = " <!-- xml --> ";
+      #  "item_calc" = " <!-- xml --> ";
         # other provider layouts
-      };
-    };
-    "other theme name" = {
+      #};
+      #};
+      #"other theme name" = {
         # ...
-    };
+      #};
     # more themes
   };
 };
