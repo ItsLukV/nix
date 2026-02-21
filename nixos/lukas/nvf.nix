@@ -5,6 +5,17 @@
     enable = true;
     settings = {
       vim = {
+        filetree = {
+          neo-tree = {
+            enable = true;
+            setupOpts = {
+              window = {
+                width = 30;
+                position = "left";
+              };
+            };
+          };
+        };
         visuals = {
           nvim-cursorline = {
             enable = true;
@@ -25,7 +36,7 @@
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
-        lsp.enable = true;
+        #lsp.enable = true;
         languages = {
           enableTreesitter = true;
           
@@ -63,6 +74,13 @@
             key = "<leader>fb";
             action = "<cmd>Telescope buffers<cr>";
             desc = "Telescope: Find Buffers";
+          }
+
+          {
+            mode = "n";
+            key = "<leader>e";
+            action = ":Neotree toggle<CR>";
+            desc = "Toggle Neo-tree";
           }
         ];
       };
