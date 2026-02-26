@@ -9,6 +9,7 @@
     prismlauncher
     waybar
     spotify
+    pinta
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
