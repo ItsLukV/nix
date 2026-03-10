@@ -17,6 +17,7 @@
   };
 
 
+  /*
   services.displayManager = {
     sddm = {
       enable = true;
@@ -24,7 +25,7 @@
     };
     defaultSession = "hyprland";
   };
-
+  */
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024; # 16GB

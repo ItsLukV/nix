@@ -23,6 +23,15 @@
   nix.gc.options = "--delete-older-than 10d";
   nix.settings.auto-optimise-store = true;
 
+  services.xserver.enable = true;
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = false;
+      autoNumlock = true;
+    };
+    defaultSession = "hyprland";
+  };
 
   # Nvidia driver
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
