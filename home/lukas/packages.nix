@@ -4,6 +4,7 @@
     tmux
     htop
     python3  
+    ripgrep
   ];
   gui = with pkgs; [
     discord
