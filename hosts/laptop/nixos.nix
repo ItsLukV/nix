@@ -16,6 +16,17 @@
     xwayland.enable = true;
   };
 
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+
+
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:60:0:0";
+    };
+  };
 
   /*
   services.displayManager = {
