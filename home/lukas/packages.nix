@@ -5,6 +5,7 @@
     htop
     python3  
     ripgrep
+    unzip
   ];
   gui = with pkgs; [
     discord
@@ -13,6 +14,7 @@
     spotify
     pinta
     android-studio
+    kdePackages.dolphin
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
