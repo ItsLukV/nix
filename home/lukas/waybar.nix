@@ -107,7 +107,7 @@
           interval = 1;
           format-alt = "Mem: {}% ";
           format = "Mem: {used:0.1f}G ";
-          max-length = 10;
+          max-length = 15;
         };
         network = {
           format = "{bandwidthUpBits:04} ↑↓ {bandwidthDownBits:04}";
