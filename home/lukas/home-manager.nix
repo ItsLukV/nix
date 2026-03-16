@@ -16,7 +16,7 @@
     ./walker.nix
     # Hyprland
     ./hyprland.nix
-    ./waybar.nix
+    ./waybar/waybar.nix
     ./hyprshot.nix
     # ./wofi.nix
 

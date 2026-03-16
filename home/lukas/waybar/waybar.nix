@@ -1,34 +1,10 @@
-{
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    playerctl
+  ];
   programs.waybar = {
     enable = true;
-    style = ''
-      /* Main bar background */
-      window#waybar {
-        background-color: rgba(30, 30, 30, 0.9); /* Dark semi-transparent */
-        color: #ffffff;
-      }
-
-      /* Workspace buttons */
-      #workspaces button {
-        background: rgba(255, 255, 255, 0.1);
-        color: #aaaaaa;
-        font-size: 16px;
-        padding: 0 5px;
-        border-radius: 2px;
-        margin: 2px;
-      }
-
-      /* Active workspace */
-      #workspaces button.active {
-        background: rgba(255, 255, 255, 0.1);
-        color: #ffffff;
-      }
-
-      /* Hover effect */
-      #workspaces button:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
-    '';
+    style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
         layer = "top";
@@ -42,11 +18,9 @@
         ];
         modules-right = [
           "network"
-          "custom/divider"
+          "mpris"
           "cpu"
-          "custom/divider"
           "memory"
-          "custom/divider"
           "pulseaudio"
         ];
         "hyprland/workspaces" = {
@@ -134,6 +108,23 @@
           scroll-step = 5;
           tooltip = true;
           tooltip-format = "{desc} {volume}% ({format_source})";
+        };
+        mpris = {
+          player = "spotify";
+          format = "{player_icon} {title}";
+          format-paused = "{status_icon} <i>{title}</i>";
+          player-icons = {
+            default = "▶";
+            spotify = " ";
+          };
+          status-icons = {
+            paused = "⏸";
+          };
+          "on-click" = "${pkgs.playerctl}/bin/playerctl play-pause -p spotify";
+          # Scroll actions for volume
+          "on-scroll-up" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05+";
+          "on-scroll-down" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05-";
+          max-length = 40;
         };
       };
     };
