@@ -68,12 +68,49 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  services.pipewire = {
+services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    
+    # Ensure the plugin package is available to PipeWire
+    extraLv2Packages = [ pkgs.rnnoise-plugin ];
+
+    extraConfig.pipewire."99-input-denoising" = {
+      "context.modules" = [
+        {
+          name = "libpipewire-module-filter-chain";
+          args = {
+            "node.description" = "Noise Canceling Source";
+            "media.name" = "Noise Canceling Source";
+            "filter.graph" = {
+              nodes = [
+                {
+                  type = "ladspa";
+                  name = "rnnoise";
+                  plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                  label = "noise_suppressor_mono";
+                  control = { "VAD Threshold (%)" = 50.0; };
+                }
+              ];
+            };
+            "capture.props" = {
+  "node.name" = "capture.rnnoise_source";
+  "node.passive" = true;
+  "audio.rate" = 48000;
+  # ADD THIS LINE:
+            "target.object" = "alsa_input.pci-0000_0c_00.6.analog-stereo";
+            };
+            "playback.props" = {
+              "node.name" = "rnnoise_source";
+              "media.class" = "Audio/Source";
+              "audio.rate" = 48000;
+            };
+          };
+        }
+      ];
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
