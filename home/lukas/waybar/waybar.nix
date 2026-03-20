@@ -79,8 +79,8 @@
         };
         memory = {
           interval = 1;
-          format-alt = "Mem: {}% ";
-          format = "Mem: {used:0.1f}G ";
+          format = "Mem: {}% ";
+          format-alt = "Mem: {used:0.1f}G ";
           max-length = 15;
         };
         network = {
