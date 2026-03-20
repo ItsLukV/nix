@@ -27,6 +27,5 @@
     ./alacritty.nix
     ./wofi.nix
     ./obs.nix
-      #    ./steam.nix
   ]);
 }

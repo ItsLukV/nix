@@ -10,6 +10,7 @@
     ./hardware-pc.nix
     ../shared.nix
     ./libreoffice.nix
+    ./steam.nix
   ];
   programs.hyprland = {
     enable = true;
@@ -17,15 +18,6 @@
     xwayland.enable = true;
   };
 
-  /*
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true; # Required for Wayland sessions
-    };
-    defaultSession = "hyprland";
-  };
-*/
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024; # 16GB
