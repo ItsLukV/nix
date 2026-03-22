@@ -3,17 +3,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    /*
-		nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    */
 		nvf.url = "github:notashelf/nvf";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -35,32 +34,5 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nvf,
-    ...
-  } @ inputs: let
-    mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs inputs;
-    };
-  in {
-    nixosConfigurations.wsl = mkSystem "wsl" {
-      system = "x86_64-linux";
-      user   = "lukas";
-      wsl    = true;
-    };
-
-    nixosConfigurations.pc = mkSystem "pc" {
-      system = "x86_64-linux";
-      user = "lukas";
-    };
-
-    nixosConfigurations.laptop = mkSystem "laptop" {
-      system = "x86_64-linux";
-      user = "lukas";
-    };
-
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }
