@@ -96,10 +96,9 @@ services.pipewire = {
               ];
             };
             "capture.props" = {
-  "node.name" = "capture.rnnoise_source";
-  "node.passive" = true;
-  "audio.rate" = 48000;
-  # ADD THIS LINE:
+            "node.name" = "capture.rnnoise_source";
+            "node.passive" = true;
+            "audio.rate" = 48000;
             "target.object" = "alsa_input.pci-0000_0c_00.6.analog-stereo";
             };
             "playback.props" = {
