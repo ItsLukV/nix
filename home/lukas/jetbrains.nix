@@ -18,6 +18,8 @@
   '';
   programs.java = {
     enable = true;
-    package = pkgs.jdk25; 
+    package = pkgs.jdk21; 
   };
+
+  home.file.".jdk25".source = pkgs.jdk25.home;
 }
