@@ -4,9 +4,10 @@
     # import any other modules from here
     imports = [
       self.nixosModules.pcHardware
-      #inputs.nvf.nixosModules.default
+      inputs.home-manager.nixosModules.default
       self.nixosModules.nvim
-      self.nixosModules.niri
+      # self.nixosModules.niri
+      self.nixosModules.hyprland
       self.nixosModules.git
    ];
 
