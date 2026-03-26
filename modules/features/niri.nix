@@ -16,6 +16,8 @@
 #          { command = [ (lib.getExe ) ]; }
 #        ];
 
+        xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+
         # Equivalent to gaps_in = 0 and gaps_out = 0
         layout.gaps = 0;
 
@@ -25,27 +27,6 @@
           # Mouse sensitivity maps here (0.5 to 1.0 depending on preference)
           mouse.accel-speed = 1.0;
         };
-	/*
-	outputs = {
-          # Left Monitor
-          "DP-3" = {
-            mode = "2560x1440@164.983";
-            position = { x = 0; y = 0; };
-          };
-
-          # Center Monitor
-          "HDMI-A-1" = {
-            mode = "2560x1440@144.000";
-            position = { x = 2560; y = 0; };
-          };
-
-          # Right Monitor
-          "DP-2" = {
-            mode = "1280x1024@60.020";
-            position = { x = 5120; y = 0; };
-          };
-        };
-	*/
         binds = {
           # Core Application Binds
           "Mod+Q".spawn-sh = lib.getExe pkgs.firefox;

@@ -4,8 +4,6 @@
     # import any other modules from here
     imports = [
       self.nixosModules.pcHardware
-      self.nixosModules.niri
-      self.nixosModules.git
     ];
 
 
@@ -48,19 +46,19 @@
     nix.settings.auto-optimise-store = true;
 
     # services.xserver.enable = true;
-    # services.displayManager = {
-    #   sddm = {
-    #     enable = true;
-    #     wayland.enable = false;
-    #     autoNumlock = true;
-    #   };
-    #   defaultSession = "hyprland";
-    # };
+    services.displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+        autoNumlock = true;
+      };
+    #  defaultSession = "hyprland";
+    };
 
     # Nvidia driver
     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
     hardware.nvidia.open = false;
-    services.xserver.videoDrivers = ["nvidia"];
+    # services.xserver.videoDrivers = ["nvidia"];
 
     # Enable networking
     networking.networkmanager.enable = true;
