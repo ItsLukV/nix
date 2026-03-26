@@ -73,7 +73,8 @@ services.pipewire = {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    
+
+    /*
     # Ensure the plugin package is available to PipeWire
     extraLv2Packages = [ pkgs.rnnoise-plugin ];
 
@@ -89,7 +90,7 @@ services.pipewire = {
                 {
                   type = "ladspa";
                   name = "rnnoise";
-                  plugin = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                  plugin = "librnnoise_ladspa";
                   label = "noise_suppressor_mono";
                   control = { "VAD Threshold (%)" = 50.0; };
                 }
@@ -99,7 +100,7 @@ services.pipewire = {
             "node.name" = "capture.rnnoise_source";
             "node.passive" = true;
             "audio.rate" = 48000;
-            "target.object" = "alsa_input.pci-0000_0c_00.6.analog-stereo";
+              #            "target.object" = "alsa_input.pci-0000_0c_00.6.analog-stereo";
             };
             "playback.props" = {
               "node.name" = "rnnoise_source";
@@ -110,6 +111,7 @@ services.pipewire = {
         }
       ];
     };
+    */
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
