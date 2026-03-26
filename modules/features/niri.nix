@@ -9,7 +9,6 @@
   perSystem = { pkgs, lib, self', ... }: {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
-
       settings = {
         # Run your startup script
 #        spawn-at-startup = [
@@ -18,31 +17,51 @@
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-        # Equivalent to gaps_in = 0 and gaps_out = 0
         layout.gaps = 0;
 
-        # Input settings translated
         input = {
           keyboard.xkb.layout = "dk";
-          # Mouse sensitivity maps here (0.5 to 1.0 depending on preference)
-          mouse.accel-speed = 1.0;
         };
+
+        outputs = {
+          # Samsung 1 - 2560x1440
+          "DP-3" = {
+            position = {
+              _attrs = {
+                x = 0;
+                y = 0;
+              };
+            };
+          };
+          # Samsung 2 - 2560x1440
+          "HDMI-A-1" = {
+            position = {
+              _attrs = {
+                x = 2560;
+                y = 0;
+              };
+            };
+          };
+          # Dell - 1280x1024
+          "DP-2" = {
+            position = {
+              _attrs = {
+                x = 5120;
+                y = 208;
+              };
+            };
+          };
+        };
+
         binds = {
           # Core Application Binds
           "Mod+Q".spawn-sh = lib.getExe pkgs.firefox;
           "Mod+Shift+C".close-window = null;
           "Mod+Return".spawn-sh = lib.getExe pkgs.alacritty;
-          "Mod+S".spawn-sh = lib.getExe pkgs.walker;
+          # "Mod+S".spawn-sh = lib.getExe pkgs.walker;
           "Mod+M".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
-          # Floating (Available in Niri 25.11+)
           "Mod+Space".toggle-window-floating = null;
-
-          # Grouping Binds (Translated to Niri's Column logic)
-          "Mod+G".consume-window-into-column = null;
-          "Mod+Shift+G".expel-window-from-column = null;
-          "Mod+Tab".focus-window-down = null;
-          "Mod+Apostrophe".focus-window-up = null;
 
           # Workspace Switching
           "Mod+1".focus-workspace = 1;
@@ -65,12 +84,6 @@
           "Mod+Shift+7".move-column-to-workspace = 7;
           "Mod+Shift+8".move-column-to-workspace = 8;
           "Mod+Shift+9".move-column-to-workspace = 9;
-
-          # Built-in Niri binds you'll likely want for movement
-          "Mod+Left".focus-column-left = null;
-          "Mod+Right".focus-column-right = null;
-          "Mod+Shift+Left".move-column-left = null;
-          "Mod+Shift+Right".move-column-right = null;
         };
       };
     };

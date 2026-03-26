@@ -1,29 +1,22 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.pcConfiguration = {config, pkgs, inputs, ... }: {
+  flake.nixosModules.pcConfiguration = {config, pkgs, ... }: {
     # import any other modules from here
     imports = [
       self.nixosModules.pcHardware
-    ];
+      #inputs.nvf.nixosModules.default
+      self.nixosModules.nvim
+      self.nixosModules.niri
+      self.nixosModules.git
+   ];
 
 
     networking.hostName = "pc";
-    programs.hyprland = {
-      enable = false;
-      # package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-      xwayland.enable = true;
-    };
 
     swapDevices = [{
       device = "/swapfile";
       size = 16 * 1024; # 16GB
     }];
-
-    services.displayManager.gdm.enable = false;
-    services.desktopManager.gnome.enable = false;
-    environment.variables = {
-      USE_WAYLAND_GRIM = 1;
-    };
 
 
     # Bootloader.
@@ -47,18 +40,23 @@
 
     # services.xserver.enable = true;
     services.displayManager = {
+      gdm.enable = true;
       sddm = {
-        enable = true;
-        wayland.enable = true;
+        enable = false;
+        # wayland.enable = true;
         autoNumlock = true;
       };
     #  defaultSession = "hyprland";
     };
 
     # Nvidia driver
-    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-    hardware.nvidia.open = false;
-    # services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = ["nvidia"];
+    hardware.nvidia = {
+      modesetting.enable = true;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
 
     # Enable networking
     networking.networkmanager.enable = true;
@@ -90,7 +88,7 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
     # Enable sound with pipewire.
-  services.pipewire = {
+    services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -148,10 +146,9 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
       firefox
-      home-manager
       pavucontrol
       htop
-      go
+      tmux
     ];
 
     virtualisation.docker.rootless = {
