@@ -5,7 +5,7 @@
     imports = [
       self.nixosModules.pcHardware
       self.nixosModules.git
-      self.nixosModules.niri
+      self.nixosModules.nvim
     ];
 
 

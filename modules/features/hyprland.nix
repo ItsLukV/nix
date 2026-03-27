@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.hyprland = {
+  flake.homeModules.hyprland = {
     config,
     pkgs,
     inputs,
@@ -15,20 +15,16 @@
       swww img ${wallpaper}
     '';
   in {
-    programs.hyprland.enable = true;
-    /*
     home = {
-    packages = [ pkgs.swww ];
-    pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-      gtk.enable = true;
-      x11.enable = true;
+      packages = [ pkgs.swww ];
+      pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = 24;
+        gtk.enable = true;
+        x11.enable = true;
+      };
     };
-    };
-    */
-    home-manager.users.lukas = {
     wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -154,6 +150,5 @@
       plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
     '';
     };
-  };
   };
 }
