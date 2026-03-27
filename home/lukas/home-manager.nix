@@ -27,5 +27,6 @@
     ./alacritty.nix
     ./wofi.nix
     ./obs.nix
+    ./tmux.nix
   ]);
 }
