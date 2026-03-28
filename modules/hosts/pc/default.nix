@@ -3,7 +3,8 @@
     specialArgs = { inherit inputs self; };
     modules = [
       self.nixosModules.pcConfiguration
-      inputs.home-manager.flakeModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
+      inputs.nvf.nixosModules.default
     ];
   };
   flake.homeConfigurations."lukas" = inputs.home-manager.lib.homeManagerConfiguration {
