@@ -7,20 +7,4 @@
       inputs.nvf.nixosModules.default
     ];
   };
-  flake.homeConfigurations."lukas" = inputs.home-manager.lib.homeManagerConfiguration {
-    extraSpecialArgs = { inherit inputs self; };
-    modules = [
-    {
-      home.username = "lukas";
-      home.homeDirectory = "/home/lukas";
-      home.stateVersion = "25.05";
-
-      imports = [
-        self.homeModules.hyprland
-      ];
-    }
-
-      # self.nixosModules.pcHome
-    ];
-  };
 }

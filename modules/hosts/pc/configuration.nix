@@ -6,6 +6,7 @@
       self.nixosModules.pcHardware
       self.nixosModules.git
       self.nixosModules.nvim
+      self.nixosModules.tmux
     ];
 
 
@@ -150,7 +151,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
       firefox
-      home-manager
+      # home-manager
       pavucontrol
       htop
       go
