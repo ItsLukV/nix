@@ -17,6 +17,8 @@
     imports = [
       self.homeModules.hyprland
       self.homeModules.waybar
+      self.homeModules.hyprshot
+      self.homeModules.walker
     ];
   };
 }
