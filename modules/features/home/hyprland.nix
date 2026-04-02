@@ -6,7 +6,7 @@
     lib,
     ...
   }: let
-    wallpaper = ../../assets/wallpaper.png;
+    wallpaper = ../../../assets/wallpaper.png;
     terminal = pkgs.alacritty + "/bin/alacritty";
     mod = "SUPER";
     startupScript = pkgs.writeShellScriptBin "start" ''

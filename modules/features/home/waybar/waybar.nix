@@ -1,11 +1,6 @@
 
 {self, ...}: {
-  flake.homeModules.waybar = {
-    config,
-    pkgs,
-    inputs,
-    ...
-  }: {pkgs, ...}: {
+  flake.homeModules.waybar = { config, pkgs, inputs, ... }: {
     home.packages = with pkgs; [
       playerctl
     ];

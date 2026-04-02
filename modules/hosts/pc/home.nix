@@ -3,13 +3,15 @@
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     extraSpecialArgs = { inherit inputs self; };
     modules = [
-      self.homeModules.pcHome
+      self.homeModules.pcHome 
+      {
+        home.username = "lukas";
+        home.homeDirectory = "/home/lukas";
+      }
     ];
   };
 
   flake.homeModules.pcHome = {
-    home.username = "lukas";
-    home.homeDirectory = "/home/lukas";
     home.stateVersion = "25.05";
 
     imports = [
