@@ -6,6 +6,7 @@
     python3  
     ripgrep
     unzip
+    wget
   ];
   gui = with pkgs; [
     discord
@@ -15,6 +16,7 @@
     pinta
     android-studio
     kdePackages.dolphin
+    ungoogled-chromium
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
