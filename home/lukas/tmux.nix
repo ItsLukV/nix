@@ -6,9 +6,14 @@
     mouse = true;
     
     extraConfig = ''
-      bind -n M-Left switch-client -p
-      bind -n M-Right switch-client -n
+      bind -n M-Left previous-window
+      bind -n M-Right next-window
+  
+      # Create a new window (Workspace) with Super + Up
+      bind -n M-Up new-window
 
+      # Close a window (Workspace) with Super + Down
+      bind -n M-Down confirm-before -p "Kill window? (y/n)" kill-window
       set -g status-left "#{?client_prefix,#[fg=black]#[bg=yellow]#[bold] PREFIX }"
     '';
   };
