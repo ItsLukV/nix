@@ -10,12 +10,12 @@
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    swww-daemon &
-    swww img ${wallpaper}
+    ${pkgs.awww}/bin/awww-daemon &
+    sleep 1 && ${pkgs.awww}/bin/awww img ${wallpaper}
   '';
 in {
   home = {
-    packages = [ pkgs.swww ];
+    packages = [ pkgs.awww ];
     pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;

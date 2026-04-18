@@ -113,6 +113,7 @@
           player = "spotify";
           format = "{player_icon} {title}";
           format-paused = "{status_icon} <i>{title}</i>";
+          interval = 1;
           player-icons = {
             default = "▶";
             spotify = " ";
@@ -121,6 +122,8 @@
             paused = "⏸";
           };
           "on-click" = "${pkgs.playerctl}/bin/playerctl play-pause -p spotify";
+
+          "on-click-middle" = "${pkgs.playerctl}/bin/playerctl next -p spotify";
           # Scroll actions for volume
           "on-scroll-up" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05+";
           "on-scroll-down" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05-";
