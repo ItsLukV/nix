@@ -11,11 +11,26 @@
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.awww}/bin/awww-daemon &
-    sleep 1 && ${pkgs.awww}/bin/awww img ${wallpaper}
+    # Wait for aww daemon to be ready
+    sleep 1 
+
+    # Fetch Bing Wallpaper URL using curl and jq
+    BING_URL="https://www.bing.com$( ${pkgs.curl}/bin/curl -s 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US' | ${pkgs.jq}/bin/jq -r '.images[0].url' )"
+    
+    # Download the image to a temp file
+    ${pkgs.curl}/bin/curl -s -o /tmp/bing_wallpaper.jpg "$BING_URL"
+
+    # Set the wallpaper
+    ${pkgs.awww}/bin/awww img /tmp/bing_wallpaper.jpg
+    ${pkgs.awww}/bin/awww img ${wallpaper}
   '';
 in {
   home = {
-    packages = [ pkgs.awww ];
+    packages = [ 
+      pkgs.awww 
+      pkgs.jq
+      pkgs.curl
+    ];
     pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
