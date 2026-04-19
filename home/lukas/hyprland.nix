@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  wallpaper = ../../assets/wallpaper.png;
+  # wallpaper = ../../assets/wallpaper.png;
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
@@ -22,7 +22,6 @@
 
     # Set the wallpaper
     ${pkgs.awww}/bin/awww img /tmp/bing_wallpaper.jpg
-    ${pkgs.awww}/bin/awww img ${wallpaper}
   '';
 in {
   home = {
