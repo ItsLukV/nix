@@ -127,6 +127,7 @@ in {
         kb_layout = "dk";
         follow_mouse = 1;
         sensitivity = 1;
+        numlock_by_default = true;
         touchpad = {
           disable_while_typing = true;
           natural_scroll = true;
