@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   # Bootloader.
@@ -27,7 +28,7 @@
   services.displayManager = {
     sddm = {
       enable = true;
-      wayland.enable = false;
+      wayland.enable = lib.mkDefault false;
       autoNumlock = true;
     };
     defaultSession = "hyprland";
