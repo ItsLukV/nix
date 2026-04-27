@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   programs.obs-studio = {
-    enable = true;
+    enable = false;
 
     # optional Nvidia hardware acceleration
     package = (
