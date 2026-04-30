@@ -34,9 +34,7 @@ in {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     
-    # Correct plugin reference
     plugins = [
-      (inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland + "/lib/libhyprgroup.so")
       inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
     ];
 
@@ -62,12 +60,36 @@ in {
 
       exec-once = ["${startupScript}/bin/start" "${newWallpaper}/bin/start"];
       
-      group = {
-        # Insert new windows after the currently active window
-        insert_after_current = true;
-        # Focus the group when a new window is added to it
-        focus_removed_window = true;
-      };
+        group = {
+          insert_after_current = true; 
+          focus_removed_window = true;
+          "col.border_active" = "rgba(ffffffff)"; 
+          "col.border_inactive" = "rgba(00000000)";
+
+          groupbar = {
+            enabled = true;
+            render_titles = true; 
+            gradients = true;
+            font_size = 16;
+            font_weight_active = "ultraheavy";
+            height = 24;
+
+            # Matching Waybar #ffffff (White)
+            text_color = "0xffffffff"; 
+            
+            # Matching Waybar #aaaaaa (Light Grey)
+            text_color_inactive = "0xffaaaaaa"; 
+
+            # Matching Waybar background-color: rgba(30, 30, 30, 1)
+            "col.active" = "0xff1e1e1e"; 
+
+            # Using the same grey as inactive text for consistency
+            "col.inactive" = "0xff333333"; 
+
+            # Optional: Spotify Green accent for locked/special states
+            "col.locked_active" = "0xff1db954";
+          };
+        };
 
       # Use consistent variable name for modifier key
       "$mainMod" = mod; 
