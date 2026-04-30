@@ -51,6 +51,7 @@ in {
         enabled = true;
         animation = [
           "workspaces, 0, 1, default"
+          "fadeSwitch, 0, 1, default"
         ];
       };
 
