@@ -1,4 +1,5 @@
 {pkgs, lib, isWSL, ...}: let
+  newWallpaperScript = import ./wallPaper.nix { inherit pkgs; };
   default = with pkgs; [
     fastfetch
     tmux
@@ -17,6 +18,7 @@
     android-studio
     kdePackages.dolphin
     ungoogled-chromium
+    newWallpaperScript
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);

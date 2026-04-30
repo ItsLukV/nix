@@ -5,7 +5,6 @@
   lib,
   ...
 }: let
-  # wallpaper = ../../assets/wallpaper.png;
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
@@ -13,16 +12,8 @@
     ${pkgs.awww}/bin/awww-daemon &
     # Wait for aww daemon to be ready
     sleep 1 
-
-    # Fetch Bing Wallpaper URL using curl and jq
-    BING_URL="https://www.bing.com$( ${pkgs.curl}/bin/curl -s 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US' | ${pkgs.jq}/bin/jq -r '.images[0].url' )"
-    
-    # Download the image to a temp file
-    ${pkgs.curl}/bin/curl -s -o /tmp/bing_wallpaper.jpg "$BING_URL"
-
-    # Set the wallpaper
-    ${pkgs.awww}/bin/awww img /tmp/bing_wallpaper.jpg
   '';
+  newWallpaper = import ./wallPaper.nix { inherit pkgs; };
 in {
   home = {
     packages = [ 
@@ -68,7 +59,7 @@ in {
         "XCURSOR_SIZE,24"
       ];
 
-      exec-once = ["${startupScript}/bin/start"];
+      exec-once = ["${startupScript}/bin/start" "${newWallpaper}/bin/start"];
       
       group = {
         # Insert new windows after the currently active window
