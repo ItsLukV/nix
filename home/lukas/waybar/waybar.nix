@@ -110,10 +110,12 @@
           tooltip-format = "{desc} {volume}% ({format_source})";
         };
         mpris = {
-          player = "spotify";
-          format = "{player_icon} {title}";
-          format-paused = "{status_icon} <i>{title}</i>";
-          interval = 1;
+          # Use "spotify" but allow for instance variations
+          player = "spotify"; 
+          format = "{player_icon} {artist} - {title}";
+          format-paused = "{status_icon} <i>{artist} - {title}</i>";
+          # This prevents Firefox from hijacking the module
+          ignored-players = [ "firefox" ];
           player-icons = {
             default = "▶";
             spotify = " ";
@@ -121,12 +123,10 @@
           status-icons = {
             paused = "⏸";
           };
-          "on-click" = "${pkgs.playerctl}/bin/playerctl play-pause -p spotify";
-
-          "on-click-middle" = "${pkgs.playerctl}/bin/playerctl next -p spotify";
-          # Scroll actions for volume
-          "on-scroll-up" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05+";
-          "on-scroll-down" = "${pkgs.playerctl}/bin/playerctl -p spotify volume 0.05-";
+          # Use absolute path or simple string if playerctl is in home.packages
+          on-click = "playerctl play-pause -p spotify";
+          on-scroll-up = "playerctl volume 0.05+ -p spotify";
+          on-scroll-down = "playerctl volume 0.05- -p spotify";
           max-length = 40;
         };
       };
