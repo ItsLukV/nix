@@ -8,6 +8,7 @@
     ripgrep
     unzip
     wget
+    github-copilot-cli
   ];
   gui = with pkgs; [
     discord
@@ -18,6 +19,7 @@
     android-studio
     kdePackages.dolphin
     ungoogled-chromium
+    zed-editor
     newWallpaperScript
   ];
 in {
