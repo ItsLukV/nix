@@ -43,8 +43,6 @@
     size = 16 * 1024; # 16GB
   }];
 
-  services.displayManager.gdm.enable = false;
-  services.desktopManager.gnome.enable = false;
   environment.variables = {
     USE_WAYLAND_GRIM = 1;
     WLR_NO_HARDWARE_CURSORS = "1"; 
