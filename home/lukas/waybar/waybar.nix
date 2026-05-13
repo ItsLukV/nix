@@ -111,7 +111,7 @@
         };
         mpris = {
           # Use "spotify" but allow for instance variations
-          player = "spotify"; 
+          player-name = "spotify"; 
           format = "{player_icon} {artist} - {title}";
           format-paused = "{status_icon} <i>{artist} - {title}</i>";
           # This prevents Firefox from hijacking the module
