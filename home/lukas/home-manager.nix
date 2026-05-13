@@ -4,6 +4,11 @@
   home.username = "lukas";
   home.homeDirectory = "/home/lukas";
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   imports = [
 #    inputs.nixvim.homeModules.nixvim
 #    ./nixvim.nix
