@@ -110,12 +110,10 @@
           tooltip-format = "{desc} {volume}% ({format_source})";
         };
         mpris = {
-          # Use "spotify" but allow for instance variations
-          player-name = "spotify"; 
+          # Pin the module to Spotify instead of following active players.
+          player = "spotify";
           format = "{player_icon} {artist} - {title}";
           format-paused = "{status_icon} <i>{artist} - {title}</i>";
-          # This prevents Firefox from hijacking the module
-          ignored-players = [ "firefox" ];
           player-icons = {
             default = "▶";
             spotify = " ";

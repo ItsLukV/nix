@@ -35,24 +35,24 @@
   };
 
   # Optional GNOME boot specialisation.
-  specialisation = {
-    gnome = {
-      inheritParentConfig = true;
-      configuration = {
-        services.displayManager.gdm.enable = true;
-        services.desktopManager.gnome.enable = true;
-        services.gnome.core-apps.enable = false;
-        services.gnome.core-developer-tools.enable = false;
-        services.gnome.games.enable = false;
-        environment.systemPackages = with pkgs; [gnome-console];
-        environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
-
-        programs.hyprland.enable = lib.mkForce false;
-        services.displayManager.sddm.enable = lib.mkForce false;
-        services.displayManager.defaultSession = lib.mkForce "gnome";
-      };
-    };
-  };
+  # specialisation = {
+  #   gnome = {
+  #     inheritParentConfig = true;
+  #     configuration = {
+  #       services.displayManager.gdm.enable = true;
+  #       services.desktopManager.gnome.enable = true;
+  #       services.gnome.core-apps.enable = false;
+  #       services.gnome.core-developer-tools.enable = false;
+  #       services.gnome.games.enable = false;
+  #       environment.systemPackages = with pkgs; [gnome-console];
+  #       environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
+  #
+  #       programs.hyprland.enable = lib.mkForce false;
+  #       services.displayManager.sddm.enable = lib.mkForce false;
+  #       services.displayManager.defaultSession = lib.mkForce "gnome";
+  #     };
+  #   };
+  # };
 
   # Nvidia driver
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
