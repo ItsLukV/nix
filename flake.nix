@@ -2,10 +2,15 @@
   description = "My system configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     /*
@@ -37,29 +42,31 @@
 
   outputs = {
     self,
-    nixpkgs,
-    home-manager,
-    nvf,
     ...
   } @ inputs: let
     mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs inputs;
+      inherit inputs;
     };
   in {
     nixosConfigurations.wsl = mkSystem "wsl" {
       system = "x86_64-linux";
       user   = "lukas";
       wsl    = true;
+      home-manager = inputs.home-manager;
     };
 
     nixosConfigurations.pc = mkSystem "pc" {
       system = "x86_64-linux";
       user = "lukas";
+      nixpkgs = inputs.nixpkgs;
+      home-manager = inputs.home-manager;
     };
 
     nixosConfigurations.laptop = mkSystem "laptop" {
       system = "x86_64-linux";
       user = "lukas";
+      nixpkgs = inputs.nixpkgs-stable;
+      home-manager = inputs.home-manager-stable;
     };
 
   };

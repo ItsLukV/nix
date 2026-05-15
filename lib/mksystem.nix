@@ -1,10 +1,12 @@
-{ nixpkgs, inputs }:
+{ inputs }:
 
 name:
 {
   system,
   user,
-  wsl ? false
+  wsl ? false,
+  nixpkgs ? inputs.nixpkgs,
+  home-manager ? inputs.home-manager
 }:
 
 let
@@ -35,7 +37,7 @@ in nixpkgs.lib.nixosSystem rec {
     userOSConfig
 
     # Home Manager Config
-    inputs.home-manager.nixosModules.home-manager
+    home-manager.nixosModules.home-manager
     {
       home-manager = {
         useGlobalPkgs = true;

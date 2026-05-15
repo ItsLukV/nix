@@ -7,17 +7,19 @@
 }: let
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
+  wallpaperPkg = if pkgs ? awww then pkgs.awww else pkgs.swww;
+  wallpaperCmd = if pkgs ? awww then "awww" else "swww";
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.awww}/bin/awww-daemon &
-    # Wait for aww daemon to be ready
+    ${wallpaperPkg}/bin/${wallpaperCmd}-daemon &
+    # Wait for the wallpaper daemon to be ready
     sleep 1 
   '';
   newWallpaper = import ./wallPaper.nix { inherit pkgs; };
 in {
   home = {
     packages = [ 
-      pkgs.awww 
+      wallpaperPkg
       pkgs.jq
       pkgs.curl
     ];

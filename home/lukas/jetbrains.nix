@@ -1,7 +1,7 @@
 {pkgs, home, ...}: {
   home = {
     packages = with pkgs; [
-      jetbrains.idea
+      (if jetbrains ? idea then jetbrains.idea else jetbrains.idea-ultimate)
       gradle
     ];
     sessionVariables = {
@@ -21,5 +21,5 @@
     package = pkgs.jdk21; 
   };
 
-  home.file.".jdk25".source = pkgs.jdk25.home;
+  home.file.".jdk25".source = pkgs.jdk21.home;
 }

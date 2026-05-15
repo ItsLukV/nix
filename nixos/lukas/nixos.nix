@@ -4,7 +4,6 @@
   imports = [
     ./nvf.nix
   ];
-  programs.bash.enable = true;
 
   users.users.lukas = {
     isNormalUser = true;

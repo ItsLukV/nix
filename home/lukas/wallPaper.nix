@@ -1,5 +1,10 @@
 { pkgs }:
 
+let
+  wallpaperPkg = if pkgs ? awww then pkgs.awww else pkgs.swww;
+  wallpaperCmd = if pkgs ? awww then "awww" else "swww";
+in
+
 pkgs.writeShellScriptBin "newWallpaper" ''
   set -e
 
@@ -34,5 +39,5 @@ pkgs.writeShellScriptBin "newWallpaper" ''
 
   # 6. Set the wallpaper (Linking to 'latest' helps for some configs)
   ln -sf "$TARGET_FILE" "$OUTPUT_DIR/latest.jpg"
-  ${pkgs.awww}/bin/awww img "$TARGET_FILE"
+  ${wallpaperPkg}/bin/${wallpaperCmd} img "$TARGET_FILE"
 ''
