@@ -11,6 +11,7 @@
 
   # Nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  programs.nix-ld.enable = true;
 
   # Fonts
   fonts.packages = with pkgs; [
