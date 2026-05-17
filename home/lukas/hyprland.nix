@@ -8,7 +8,6 @@
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
   startupScript = pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
     ${pkgs.awww}/bin/awww-daemon &
     # Wait for aww daemon to be ready
     sleep 1 
