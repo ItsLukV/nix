@@ -21,6 +21,7 @@
     ungoogled-chromium
     zed-editor
     newWallpaperScript
+    vesktop
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
