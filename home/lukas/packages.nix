@@ -24,6 +24,7 @@
     zed-editor
     newWallpaperScript
     vesktop
+    gnome-text-editor
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
