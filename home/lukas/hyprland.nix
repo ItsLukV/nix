@@ -15,10 +15,11 @@
   newWallpaper = import ./wallPaper.nix { inherit pkgs; };
 in {
   home = {
-    packages = [ 
-      pkgs.awww 
+    packages = [
+      pkgs.awww
       pkgs.jq
       pkgs.curl
+      pkgs.hyprlock
     ];
     pointerCursor = {
       name = "Adwaita";
@@ -101,6 +102,7 @@ in {
         #"$mainMod, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
         "$mainMod, S, exec, ${pkgs.walker}/bin/walker"
         "$mainMod, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "$mainMod, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
 
         # Grouping keybinds - these are correct
         "$mainMod, G, togglegroup"
