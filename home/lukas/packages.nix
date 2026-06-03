@@ -9,6 +9,8 @@
     unzip
     wget
     github-copilot-cli
+    claude-code
+
   ];
   gui = with pkgs; [
     discord
