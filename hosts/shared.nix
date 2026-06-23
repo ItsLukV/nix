@@ -58,7 +58,13 @@
   # Nvidia driver
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.open = false;
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.nvidiaSettings = true;
   services.xserver.videoDrivers = ["nvidia"];
+
+  # OpenGL/Vulkan (required for Steam/CS2 including 32-bit)
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
