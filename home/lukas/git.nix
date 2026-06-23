@@ -10,5 +10,6 @@
       color.ui = true;
       init.defaultBranch = "main";
     };
+    delta.enable = true;
 	};
 }
