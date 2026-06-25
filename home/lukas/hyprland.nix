@@ -28,6 +28,11 @@ in {
       gtk.enable = true;
       x11.enable = true;
     };
+    file.".config/hypr/xdph.conf".text = ''
+    screencopy {
+      custom_picker_binary = hyprland-preview-share-picker
+    }
+  '';
   };
   
   wayland.windowManager.hyprland = {

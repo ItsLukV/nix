@@ -160,6 +160,8 @@ services.pipewire = {
     pavucontrol
     htop
     go
+  ] ++ [
+    inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   virtualisation.docker.rootless = {

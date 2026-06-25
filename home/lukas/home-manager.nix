@@ -23,6 +23,7 @@
     ./hyprland.nix
     ./waybar/waybar.nix
     ./hyprshot.nix
+    ./screenShare/screenShare.nix
     # ./wofi.nix
 
     # Misc
