@@ -111,8 +111,8 @@
           tooltip-format = "{desc} {volume}% ({format_source})";
         };
         mpris = {
-          # Pin the module to Spotify instead of following active players.
-          player = "spotify";
+          dynamic_order = ["spotify"];
+          ignored-players = ["firefox" "chromium" "brave"];
           format = "{player_icon} {artist} - {title}";
           format-paused = "{status_icon} <i>{artist} - {title}</i>";
           player-icons = {
@@ -122,10 +122,9 @@
           status-icons = {
             paused = "⏸";
           };
-          # Use absolute path or simple string if playerctl is in home.packages
-          on-click = "playerctl play-pause -p spotify";
-          on-scroll-up = "playerctl volume 0.05+ -p spotify";
-          on-scroll-down = "playerctl volume 0.05- -p spotify";
+          on-click = "playerctl play-pause";
+          on-scroll-up = "playerctl volume 0.05+";
+          on-scroll-down = "playerctl volume 0.05-";
           max-length = 40;
         };
       };
