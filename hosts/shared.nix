@@ -19,11 +19,13 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # Automatic cleanup
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 10d";
   nix.settings.auto-optimise-store = true;
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 4d";
+  };
 
   services.xserver.enable = true;
   services.displayManager = {

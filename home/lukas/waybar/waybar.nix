@@ -1,6 +1,9 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  spotify-color = pkgs.writeScript "waybar-spotify-color" (builtins.readFile ./spotify-color.py);
+in {
   home.packages = with pkgs; [
     playerctl
+    imagemagick
   ];
   programs.waybar = {
     enable = true;
@@ -19,7 +22,7 @@
         ];
         modules-right = [
           "network"
-          "mpris"
+          "custom/spotify"
           "cpu"
           "memory"
           "pulseaudio"
@@ -110,22 +113,15 @@
           tooltip = true;
           tooltip-format = "{desc} {volume}% ({format_source})";
         };
-        mpris = {
-          dynamic_order = ["spotify"];
-          ignored-players = ["firefox" "chromium" "brave"];
-          format = "{player_icon} {artist} - {title}";
-          format-paused = "{status_icon} <i>{artist} - {title}</i>";
-          player-icons = {
-            default = "▶";
-            spotify = " ";
-          };
-          status-icons = {
-            paused = "⏸";
-          };
-          on-click = "playerctl play-pause";
-          on-scroll-up = "playerctl volume 0.05+";
-          on-scroll-down = "playerctl volume 0.05-";
-          max-length = 40;
+        "custom/spotify" = {
+          exec = "${spotify-color}";
+          exec-if = "playerctl -p spotify status";
+          interval = 3;
+          return-type = "json";
+          escape = false;
+          on-click = "playerctl -p spotify play-pause";
+          on-scroll-up = "playerctl -p spotify volume 0.05+";
+          on-scroll-down = "playerctl -p spotify volume 0.05-";
         };
       };
     };

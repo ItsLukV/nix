@@ -17,19 +17,11 @@ window#waybar {
     color: #ffffff;
 }
 
-#network, #mpris, #cpu, #memory, #pulseaudio {
+#network, #custom-spotify, #cpu, #memory, #pulseaudio {
     border-left: 2px solid rgba(255, 255, 255, 0.3);
     padding: 0 10px;
 }
 
 #network {
     border-left: none;
-}
-
-#mpris {
-    color: #1DB954;
-}
-
-#mpris.paused {
-    color: #aaaaaa;
 }
