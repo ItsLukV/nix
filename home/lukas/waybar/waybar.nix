@@ -115,7 +115,6 @@ in {
         };
         "custom/spotify" = {
           exec = "${spotify-color}";
-          exec-if = "playerctl -p spotify status";
           interval = 3;
           return-type = "json";
           escape = false;

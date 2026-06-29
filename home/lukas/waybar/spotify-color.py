@@ -43,7 +43,7 @@ def get_color(art_url):
 
 status = run(["playerctl", "-p", "spotify", "status"])
 if not status or status == "Stopped":
-    sys.exit(0)
+    sys.exit(1)
 
 artist  = run(["playerctl", "-p", "spotify", "metadata", "artist"])
 title   = run(["playerctl", "-p", "spotify", "metadata", "title"])
