@@ -10,7 +10,7 @@
     wget
     github-copilot-cli
     claude-code
-
+    lazygit
   ];
   gui = with pkgs; [
     discord
