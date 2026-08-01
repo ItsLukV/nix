@@ -25,6 +25,7 @@
     newWallpaperScript
     vesktop
     gnome-text-editor
+    dbeaver-bin
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
