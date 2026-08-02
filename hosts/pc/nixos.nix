@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   sddmMonitorLayout = pkgs.writeShellScript "sddm-monitor-layout" ''
@@ -36,7 +37,19 @@ in {
     ../shared.nix
     ./libreoffice.nix
     ./steam.nix
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
+
+  # Secure Boot (needed for FACEIT AC when dual-booting into Windows).
+  # systemd-boot itself is unsigned, so it's replaced with lanzaboote,
+  # which signs the boot files with locally-generated keys.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+  environment.systemPackages = [ pkgs.sbctl ];
+
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;

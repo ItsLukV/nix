@@ -20,6 +20,11 @@ let
 in nixpkgs.lib.nixosSystem rec {
     #  inherit system;
 
+  # Needed (rather than only setting config._module.args below) so that
+  # `inputs` is available inside a host's `imports` list, which is
+  # resolved before config._module.args can be.
+  specialArgs = { inherit inputs; };
+
   modules = [
     # Allow unfree packages.
     { nixpkgs.config.allowUnfree = true; }
