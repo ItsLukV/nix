@@ -6,6 +6,8 @@
 }: {
   networking.hostName = "laptop";
   system.stateVersion = "25.05";
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   imports = [
     ./hardware-laptop.nix
     ../shared.nix
@@ -19,7 +21,6 @@
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
-
 
     prime = {
       sync.enable = true;
@@ -42,6 +43,15 @@
     device = "/swapfile";
     size = 16 * 1024; # 16GB
   }];
+
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+  };
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   environment.variables = {
     USE_WAYLAND_GRIM = 1;
