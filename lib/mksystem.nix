@@ -57,8 +57,7 @@ in nixpkgs.lib.nixosSystem rec {
     }
     {
       config._module.args = {
-          #     currentSystem = system;
-          currentSystem = system;
+        currentSystem = system;
         currentSystemName = name;
         currentSystemUser = user;
         isWSL = isWSL;

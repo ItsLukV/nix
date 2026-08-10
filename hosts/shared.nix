@@ -13,6 +13,13 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.nix-ld.enable = true;
 
+  nix.settings = {
+    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+  };
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code

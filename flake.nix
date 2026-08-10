@@ -43,6 +43,9 @@
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
   outputs = {
@@ -72,5 +75,9 @@
       user = "lukas";
     };
 
+    nixosConfigurations.pi5 = inputs.nixos-raspberrypi.lib.nixosSystem {
+      specialArgs = inputs;
+      modules = [ ./hosts/pi5/nixos.nix ];
+    };
   };
 }
