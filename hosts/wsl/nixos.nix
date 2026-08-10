@@ -12,6 +12,11 @@
   wsl.enable = true;
   wsl.defaultUser = "lukas";
 
+  # Tailscale VPN
+  services.tailscale.enable = true;
+  networking.firewall.trustedInterfaces = ["tailscale0"];
+  networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
+
   environment.systemPackages = [
     pkgs.wget
   ];

@@ -71,6 +71,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Tailscale VPN
+  services.tailscale.enable = true;
+  networking.firewall.trustedInterfaces = ["tailscale0"];
+  networking.firewall.allowedUDPPorts = [config.services.tailscale.port];
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 

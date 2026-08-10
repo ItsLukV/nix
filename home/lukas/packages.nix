@@ -11,6 +11,8 @@
     github-copilot-cli
     claude-code
     lazygit
+    gcc
+    sqlite
   ];
   gui = with pkgs; [
     discord
