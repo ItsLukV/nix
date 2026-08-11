@@ -57,6 +57,25 @@
     settings.PasswordAuthentication = false;
   };
 
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_18;
+    enableTCPIP = true;
+    authentication = lib.mkAfter ''
+      # Tailscale clients (100.64.0.0/10 is Tailscale's CGNAT range)
+      host all all 100.64.0.0/10 scram-sha-256
+      # Any local app, bare-metal or in any docker container on this host
+      # (172.16.0.0/12 is Docker's whole default bridge address pool)
+      host all all 172.16.0.0/12 scram-sha-256
+    '';
+  };
+  # Only expose Postgres to Tailscale clients and local docker containers,
+  # not the whole LAN.
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 5432 ];
+  networking.firewall.extraCommands = ''
+    iptables -A nixos-fw -p tcp --dport 5432 -s 172.16.0.0/12 -j nixos-fw-accept
+  '';
+
   nixpkgs.config.allowUnfree = true;   # minecraft-server is unfree
 
   system.stateVersion = "25.05";
