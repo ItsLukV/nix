@@ -39,12 +39,10 @@
     ];
   };
   wayland.windowManager.hyprland = {
-    settings = {
-      bind = [
-        ", Print, exec, ${lib.getExe pkgs.hyprshot} --mode output --raw | ${lib.getExe pkgs.satty} --filename -"
-        "SHIFT, Print, exec, ${lib.getExe pkgs.hyprshot} --mode window --raw | ${lib.getExe pkgs.satty} --filename -"
-        "SUPER_SHIFT, s, exec, ${lib.getExe pkgs.hyprshot} --mode region --raw | ${lib.getExe pkgs.satty} --filename -"
-      ];
-    };
+    extraConfig = ''
+      hl.bind("Print", hl.dsp.exec_cmd("${lib.getExe pkgs.hyprshot} --mode output --raw | ${lib.getExe pkgs.satty} --filename -"))
+      hl.bind("SHIFT + Print", hl.dsp.exec_cmd("${lib.getExe pkgs.hyprshot} --mode window --raw | ${lib.getExe pkgs.satty} --filename -"))
+      hl.bind("SUPER + SHIFT + s", hl.dsp.exec_cmd("${lib.getExe pkgs.hyprshot} --mode region --raw | ${lib.getExe pkgs.satty} --filename -"))
+    '';
   };
 }

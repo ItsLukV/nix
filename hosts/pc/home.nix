@@ -36,14 +36,13 @@
   '';
 in {
   programs.alacritty.settings.font.size = 20;
-  wayland.windowManager.hyprland.settings = {
-    monitor = [
-      "HDMI-A-1,preferred,0x0,1"
-      "DP-3,preferred,auto-left,1"
-      "DP-2,preferred,auto-right,1"
-    ];
-    exec-once = lib.mkAfter [
-      "${monitorLayoutFix}/bin/hyprland-monitor-layout-fix"
-    ];
-  };
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.monitor({ output = "HDMI-A-1", mode = "preferred", position = "0x0", scale = 1 })
+    hl.monitor({ output = "DP-3", mode = "preferred", position = "auto-left", scale = 1 })
+    hl.monitor({ output = "DP-2", mode = "preferred", position = "auto-right", scale = 1 })
+
+    hl.on("hyprland.start", function()
+      hl.exec_cmd("${monitorLayoutFix}/bin/hyprland-monitor-layout-fix")
+    end)
+  '';
 }

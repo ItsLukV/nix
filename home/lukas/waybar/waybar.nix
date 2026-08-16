@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   spotify-color = pkgs.writeScript "waybar-spotify-color" (builtins.readFile ./spotify-color.py);
 in {
   home.packages = with pkgs; [
@@ -31,38 +35,16 @@ in {
           format = "{icon}";
           show-empty-workspaces = false;
           format-active = "{icon}";
-          format-icons = {
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
-            "10" = "0";
-            "11" = "1";
-            "12" = "2";
-            "13" = "3";
-            "14" = "4";
-            "15" = "5";
-            "16" = "6";
-            "17" = "7";
-            "18" = "8";
-            "19" = "9";
-            "20" = "0";
-            "21" = "1";
-            "22" = "2";
-            "23" = "3";
-            "24" = "4";
-            "25" = "5";
-            "26" = "6";
-            "27" = "7";
-            "28" = "8";
-            "29" = "9";
-            "30" = "0";
-          };
+          # split-monitor-workspaces assigns each monitor a contiguous block of
+          # `workspace_count` (9, see hyprland.nix) workspace IDs, so the
+          # per-monitor workspace number is ((id - 1) mod 9) + 1, not the
+          # base-10 wrap this used to assume.
+          format-icons = builtins.listToAttrs (builtins.genList (i: let
+            n = i + 1;
+          in {
+            name = toString n;
+            value = toString (lib.mod (n - 1) 9 + 1);
+          }) 36);
         };
         "custom/divider" = {
           format = " | ";

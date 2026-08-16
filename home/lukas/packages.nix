@@ -27,6 +27,9 @@
     vesktop
     gnome-text-editor
     dbeaver-bin
+    sqlitebrowser
+    shotcut
+    vlc
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
