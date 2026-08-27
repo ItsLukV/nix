@@ -20,11 +20,14 @@
     inputs.walker.homeManagerModules.default
     ./walker.nix
     # Hyprland
-    ./hyprland.nix
-    ./waybar/waybar.nix
-    ./hyprshot.nix
-    ./screenShare/screenShare.nix
+    # ./hyprland.nix
+    # ./waybar/waybar.nix
+    # ./hyprshot.nix
+    # ./screenShare/screenShare.nix
     # ./wofi.nix
+
+    # GNOME
+    ./gnome.nix
 
     # Misc
     ./nh.nix

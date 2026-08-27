@@ -9,6 +9,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Disabling GSP firmware works around an NVIDIA proprietary-driver bug where,
+  # after suspend/resume (especially multi-monitor), atomic modeset commits fail
+  # forever with "Failed to initialize semaphore for plane fence" / error -11,
+  # leaving a black screen with only the cursor able to update.
+  boot.kernelParams = [ "nvidia.NVreg_EnableGpuFirmware=0" ];
+
   # Nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.nix-ld.enable = true;
@@ -36,33 +42,16 @@
 
   services.xserver.enable = true;
   services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = lib.mkDefault false;
-      autoNumlock = true;
-    };
-    defaultSession = "hyprland";
+    gdm.enable = true;
+    sddm.enable = false;
+    defaultSession = "gnome";
   };
 
-  # Optional GNOME boot specialisation.
-  # specialisation = {
-  #   gnome = {
-  #     inheritParentConfig = true;
-  #     configuration = {
-  #       services.displayManager.gdm.enable = true;
-  #       services.desktopManager.gnome.enable = true;
-  #       services.gnome.core-apps.enable = false;
-  #       services.gnome.core-developer-tools.enable = false;
-  #       services.gnome.games.enable = false;
-  #       environment.systemPackages = with pkgs; [gnome-console];
-  #       environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
-  #
-  #       programs.hyprland.enable = lib.mkForce false;
-  #       services.displayManager.sddm.enable = lib.mkForce false;
-  #       services.displayManager.defaultSession = lib.mkForce "gnome";
-  #     };
-  #   };
-  # };
+  services.desktopManager.gnome.enable = true;
+  services.gnome.core-apps.enable = false;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
 
   # Nvidia driver
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -70,6 +59,11 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.nvidiaSettings = true;
   services.xserver.videoDrivers = ["nvidia"];
+
+  # Without this, the proprietary driver doesn't save/restore VRAM contents
+  # across suspend/resume, so waking from suspend produces a corrupted
+  # framebuffer (garbled screen) that requires a hard power-cycle to clear.
+  hardware.nvidia.powerManagement.enable = true;
 
   # OpenGL/Vulkan (required for Steam/CS2 including 32-bit)
   hardware.graphics.enable = true;
@@ -174,6 +168,8 @@ services.pipewire = {
     pavucontrol
     htop
     go
+    gnome-console
+    nautilus
   ] ++ [
     inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];

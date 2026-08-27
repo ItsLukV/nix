@@ -12,11 +12,11 @@
     ./hardware-laptop.nix
     ../shared.nix
   ];
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+  #   xwayland.enable = true;
+  # };
 
   hardware.nvidia = {
     modesetting.enable = true;

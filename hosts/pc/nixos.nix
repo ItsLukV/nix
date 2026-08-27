@@ -50,11 +50,11 @@ in {
   };
   environment.systemPackages = [ pkgs.sbctl ];
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
+  #   xwayland.enable = true;
+  # };
 
   # Keep SDDM's X11 greeter monitor order consistent before login.
   services.xserver.displayManager.setupCommands = "${sddmMonitorLayout}";
@@ -63,6 +63,16 @@ in {
     device = "/swapfile";
     size = 16 * 1024; # 16GB
   }];
+
+  # The B650 chipset's USB controller spuriously signals a wakeup a few
+  # seconds into suspend ("xhci_hcd 0000:0a:00.0: xHC error in resume,
+  # USBSTS 0x401, Reinit" in the journal), causing the system to sleep for
+  # ~10-20s and then wake itself back up. Disable it as a wakeup source;
+  # the CPU-attached USB controllers are untouched, so keyboard/mouse wake
+  # still works on ports wired to those.
+  services.udev.extraRules = ''
+    SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x43f7", ATTR{power/wakeup}="disabled"
+  '';
 
   environment.variables = {
     USE_WAYLAND_GRIM = 1;
