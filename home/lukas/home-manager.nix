@@ -16,9 +16,9 @@
     ./git.nix
     ./bash.nix
   ] ++ (lib.optionals (!isWSL) [
-    # Walker
-    inputs.walker.homeManagerModules.default
-    ./walker.nix
+    # Walker (disabled: cairo-rs crates yanked from crates.io)
+    # inputs.walker.homeManagerModules.default
+    # ./walker.nix
     # Hyprland
     # ./hyprland.nix
     # ./waybar/waybar.nix
