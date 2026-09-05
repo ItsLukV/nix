@@ -40,6 +40,8 @@ in {
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Secure Boot (needed for FACEIT AC when dual-booting into Windows).
   # systemd-boot itself is unsigned, so it's replaced with lanzaboote,
   # which signs the boot files with locally-generated keys.
@@ -48,7 +50,7 @@ in {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
   };
-  environment.systemPackages = [ pkgs.sbctl ];
+  environment.systemPackages = [ pkgs.sbctl pkgs.kubectl ];
 
   # programs.hyprland = {
   #   enable = true;
