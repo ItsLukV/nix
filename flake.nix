@@ -45,7 +45,6 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
   outputs = {
@@ -73,11 +72,6 @@
     nixosConfigurations.laptop = mkSystem "laptop" {
       system = "x86_64-linux";
       user = "lukas";
-    };
-
-    nixosConfigurations.pi5 = inputs.nixos-raspberrypi.lib.nixosSystem {
-      specialArgs = inputs;
-      modules = [ ./hosts/pi5/nixos.nix ];
     };
   };
 }
