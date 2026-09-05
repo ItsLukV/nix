@@ -2,14 +2,19 @@
 {
   home.packages = with pkgs.gnomeExtensions; [
     dash-to-panel
+    appindicator
+    media-controls
   ] ++ [
     pkgs.gnome-screenshot
+    pkgs.playerctl
   ];
 
   dconf.settings = {
     "org/gnome/shell" = {
       enabled-extensions = [
         "dash-to-panel@jderose9.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "mediacontrols@cliffniff.github.com"
       ];
     };
 
