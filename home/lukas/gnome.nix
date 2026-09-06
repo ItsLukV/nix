@@ -3,7 +3,7 @@
   home.packages = with pkgs.gnomeExtensions; [
     dash-to-panel
     appindicator
-    media-controls
+    media-controller
   ] ++ [
     pkgs.gnome-screenshot
     pkgs.playerctl
@@ -14,7 +14,7 @@
       enabled-extensions = [
         "dash-to-panel@jderose9.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "mediacontrols@cliffniff.github.com"
+        "media-controller@naimur"
       ];
     };
 
