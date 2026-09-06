@@ -1,10 +1,21 @@
 { pkgs, ... }:
+let
+  # Only show Spotify in the panel/card; every other MPRIS player is ignored.
+  media-controller = pkgs.gnomeExtensions.media-controller.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace mpris.js \
+        --replace-fail \
+          "return name.startsWith(MPRIS_PREFIX) && !IGNORED_BUS_NAMES.includes(name);" \
+          "return name.startsWith(MPRIS_PREFIX) && !IGNORED_BUS_NAMES.includes(name) && name.toLowerCase().includes('spotify');"
+    '';
+  });
+in
 {
   home.packages = with pkgs.gnomeExtensions; [
     dash-to-panel
     appindicator
-    media-controller
   ] ++ [
+    media-controller
     pkgs.gnome-screenshot
     pkgs.playerctl
   ];
