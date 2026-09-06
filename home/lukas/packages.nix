@@ -14,7 +14,12 @@
     sqlite
   ];
   gui = with pkgs; [
-    discord
+    # Force XWayland: native Wayland Electron can't grab global hotkeys, so
+    # Discord's own keybinds (push-to-talk, mute, deafen) silently do nothing
+    # while the app isn't focused. Running under X11 restores them.
+    (discord.override {
+      commandLineArgs = "--ozone-platform=x11";
+    })
     prismlauncher
     waybar
     spotify
@@ -24,7 +29,6 @@
     ungoogled-chromium
     zed-editor
     newWallpaperScript
-    vesktop
     gnome-text-editor
     dbeaver-bin
     sqlitebrowser
