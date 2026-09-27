@@ -21,6 +21,10 @@
     pkgs.wget
   ];
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+  ];
   # nix.package = pkgs.nixUnstable;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

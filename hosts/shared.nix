@@ -25,6 +25,24 @@
     xorg.libXi
     xorg.libXtst
     xorg.libXrender
+
+    # Common native (JNI/LWJGL) deps for Java/Gradle projects, so they don't
+    # each need their own flake.nix devShell just to find these .so files.
+    stdenv.cc.cc.lib
+    zlib
+    libGL
+    mesa
+    vulkan-loader
+    libxkbcommon
+    openal
+    libpulseaudio
+    udev
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXext
+    xorg.libXrandr
+    xorg.libXinerama
+    xorg.libXxf86vm
   ];
 
   nix.settings = {
