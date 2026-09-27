@@ -61,6 +61,11 @@ in {
   # Keep SDDM's X11 greeter monitor order consistent before login.
   services.xserver.displayManager.setupCommands = "${sddmMonitorLayout}";
 
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+  };
+
   swapDevices = [{
     device = "/swapfile";
     size = 16 * 1024; # 16GB

@@ -9,6 +9,7 @@
     unzip
     wget
     claude-code
+    github-copilot-cli
     lazygit
     gcc
     sqlite
@@ -25,6 +26,8 @@
     spotify
     pinta
     android-studio
+    scrcpy
+    gnomeExtensions.gsconnect
     kdePackages.dolphin
     ungoogled-chromium
     zed-editor

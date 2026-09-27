@@ -44,5 +44,15 @@ in
     "org/gnome/shell/keybindings" = {
       show-screenshot-ui = [ "<Shift><Super>s" ];
     };
+
+    # Default Alt+Tab groups windows by application (one icon per app); make
+    # it switch between individual windows instead, so e.g. every Firefox
+    # window shows up as its own entry.
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
+      switch-windows = [ "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Alt>Tab" ];
+    };
   };
 }

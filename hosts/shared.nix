@@ -178,8 +178,6 @@ services.pipewire = {
     go
     gnome-console
     nautilus
-  ] ++ [
-    inputs.hyprland-preview-share-picker.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   virtualisation.docker.rootless = {

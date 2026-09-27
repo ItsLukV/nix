@@ -21,12 +21,12 @@
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
-
+/*
     hyprland-preview-share-picker = {
       url = "git+https://github.com/WhySoBad/hyprland-preview-share-picker?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+*/
     elephant.url = "github:abenz1267/elephant";
 
     walker = {
