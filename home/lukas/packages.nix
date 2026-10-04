@@ -21,11 +21,12 @@
     (discord.override {
       commandLineArgs = "--ozone-platform=x11";
     })
+    vesktop
     prismlauncher
-    waybar
+    # waybar
     spotify
     pinta
-    android-studio
+    # android-studio
     scrcpy
     gnomeExtensions.gsconnect
     kdePackages.dolphin
