@@ -4,6 +4,7 @@ name:
 {
   system,
   user,
+  extraUsers ? [],
   wsl ? false
 }:
 
@@ -14,8 +15,18 @@ let
   # The config files for this system.
   machineConfig = ../hosts/${name}/nixos.nix;
   machineHomeConfig = ../hosts/${name}/home.nix;
-  userOSConfig = ../nixos/${user}/nixos.nix;
-  userHMConfig = ../home/${user}/home-manager.nix;
+
+  # Primary user plus any additional accounts that also get an OS user
+  # entry and a Home Manager profile on this host.
+  allUsers = [ user ] ++ extraUsers;
+
+  userOSConfigs = map (u: ../nixos/${u}/nixos.nix) allUsers;
+  userHMConfigs = nixpkgs.lib.genAttrs allUsers (u: {
+    imports = [
+      machineHomeConfig
+      ../home/${u}/home-manager.nix
+    ];
+  });
 
 in nixpkgs.lib.nixosSystem rec {
     #  inherit system;
@@ -34,10 +45,10 @@ in nixpkgs.lib.nixosSystem rec {
     inputs.nvf.nixosModules.default
 
     # Bring in WSL if this is a WSL build
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {}) 
+    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
 
-    machineConfig 
-    userOSConfig
+    machineConfig
+  ] ++ userOSConfigs ++ [
 
     # Home Manager Config
     inputs.home-manager.nixosModules.home-manager
@@ -49,10 +60,7 @@ in nixpkgs.lib.nixosSystem rec {
           inherit inputs;
           inherit isWSL;
         };
-        users.${user}.imports = [ 
-          machineHomeConfig
-          userHMConfig 
-        ];
+        users = userHMConfigs;
       };
     }
     {

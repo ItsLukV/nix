@@ -72,6 +72,7 @@
     nixosConfigurations.laptop = mkSystem "laptop" {
       system = "x86_64-linux";
       user = "lukas";
+      extraUsers = [ "work" ];
     };
   };
 }
