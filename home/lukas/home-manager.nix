@@ -34,7 +34,6 @@
     ./vscode.nix
     ./jetbrains.nix
     ./alacritty.nix
-    ./obs.nix
     ./tmux.nix
   ]);
 }

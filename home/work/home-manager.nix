@@ -21,7 +21,6 @@
     ../lukas/vscode.nix
     ../lukas/jetbrains.nix
     ../lukas/alacritty.nix
-    ../lukas/obs.nix
     ../lukas/tmux.nix
   ]);
 }
