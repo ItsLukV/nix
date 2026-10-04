@@ -14,6 +14,7 @@
     ../lukas/git.nix
     ../lukas/bash.nix
     ./micromamba.nix
+    ./apps.nix
   ] ++ (lib.optionals (!isWSL) [
     ../lukas/gnome.nix
     ../lukas/nh.nix
