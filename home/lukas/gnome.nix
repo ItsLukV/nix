@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   # Only show Spotify in the panel/card; every other MPRIS player is ignored.
   media-controller = pkgs.gnomeExtensions.media-controller.overrideAttrs (old: {
@@ -21,6 +21,16 @@ in
   ];
 
   dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "dk" ]) ];
+      xkb-options = [ ];
+    };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      speed = 1.0;
+      two-finger-scrolling-enabled = true;
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = [
         "dash-to-panel@jderose9.github.com"

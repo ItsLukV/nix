@@ -5,7 +5,7 @@
     isNormalUser = true;
     home = "/home/work";
     description = "work";
-    extraGroups = [ "networkmanager" "docker" ];
+    extraGroups = [ "networkmanager" "docker" "wheel" ];
     shell = pkgs.bash;
   };
 }

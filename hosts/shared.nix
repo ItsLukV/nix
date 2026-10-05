@@ -127,6 +127,10 @@
   # Configure console keymap
   console.keyMap = "dk";
 
+  # Danish layout for X/Wayland, which is what the GDM login screen uses.
+  # In-session layout comes from each user's GNOME input-sources (gnome.nix).
+  services.xserver.xkb.layout = "dk";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
   # Enable sound with pipewire.
