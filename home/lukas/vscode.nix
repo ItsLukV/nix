@@ -27,6 +27,9 @@
         "disable-hardware-acceleration" = true;
         "editor.mouseWheelZoom" = true;
         "editor.inlineSuggest.enabled" = false;
+        # Set explicitly (not just via $RUST_SRC_PATH) since VS Code launched
+        # from a GUI launcher may not inherit home-manager's session vars.
+        "rust-analyzer.cargo.sysrootSrc" = "${pkgs.rustPlatform.rustLibSrc}";
       };
     };
   };

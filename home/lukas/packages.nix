@@ -13,6 +13,11 @@
     lazygit
     gcc
     sqlite
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
   ];
   gui = with pkgs; [
     # Force XWayland: native Wayland Electron can't grab global hotkeys, so
@@ -41,4 +46,7 @@
   ];
 in {
   home.packages = default ++ (lib.optionals (!isWSL) gui);
+  # rustc/cargo from nixpkgs don't bundle the stdlib source; rust-analyzer
+  # needs it to resolve std/core, so point it at rustPlatform's copy.
+  home.sessionVariables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
 }

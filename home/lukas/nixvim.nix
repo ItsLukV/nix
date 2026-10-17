@@ -32,6 +32,7 @@
           clangd.enable = true;
           nixd.enable = true;
           ruff.enable = true;
+          rust_analyzer.enable = true;
         };
       };
     };
