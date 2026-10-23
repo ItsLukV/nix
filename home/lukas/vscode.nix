@@ -22,6 +22,7 @@
         johnpapa.vscode-peacock
         charliermarsh.ruff
         tamasfe.even-better-toml
+        ms-python.mypy-type-checker
       ];
 
       # Keep settings simple & top-level (not profiles.*)
@@ -32,6 +33,7 @@
         "disable-hardware-acceleration" = true;
         "editor.mouseWheelZoom" = true;
         "editor.inlineSuggest.enabled" = false;
+        "terminal.integrated.inheritEnv" = false; 
         # Set explicitly (not just via $RUST_SRC_PATH) since VS Code launched
         # from a GUI launcher may not inherit home-manager's session vars.
         "rust-analyzer.cargo.sysrootSrc" = "${pkgs.rustPlatform.rustLibSrc}";
