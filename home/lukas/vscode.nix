@@ -17,6 +17,11 @@
         golang.go
         streetsidesoftware.code-spell-checker
         usernamehw.errorlens
+        ms-python.python
+        ms-python.vscode-pylance
+        johnpapa.vscode-peacock
+        charliermarsh.ruff
+        tamasfe.even-better-toml
       ];
 
       # Keep settings simple & top-level (not profiles.*)
@@ -30,6 +35,7 @@
         # Set explicitly (not just via $RUST_SRC_PATH) since VS Code launched
         # from a GUI launcher may not inherit home-manager's session vars.
         "rust-analyzer.cargo.sysrootSrc" = "${pkgs.rustPlatform.rustLibSrc}";
+        "python.analysis.typeCheckingMode" = "basic";
       };
     };
   };

@@ -18,6 +18,7 @@
     rustfmt
     clippy
     rust-analyzer
+    nodejs
   ];
   gui = with pkgs; [
     # Force XWayland: native Wayland Electron can't grab global hotkeys, so

@@ -7,6 +7,19 @@
   networking.hostName = "laptop";
   system.stateVersion = "25.05";
 
+  # iwlwifi mishandles channel-switch/roaming on the home mesh AP, causing
+  # repeated disconnects. iwd's roaming/CSA handling copes with this better
+  # than wpa_supplicant (the NetworkManager default).
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+
+  # TEMPORARY: verbose iwd logging to capture the reason for the next
+  # WiFi3673gms drop. Revert once we've caught it in `journalctl -u iwd`.
+  systemd.services.iwd.serviceConfig.ExecStart = [
+    ""
+    "${config.networking.wireless.iwd.package}/libexec/iwd -d"
+  ];
+
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   imports = [
     ./hardware-laptop.nix

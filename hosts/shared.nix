@@ -77,6 +77,9 @@
   services.gnome.core-apps.enable = false;
   services.gnome.core-developer-tools.enable = false;
   services.gnome.games.enable = false;
+  # Needed for Settings > System > Remote Desktop (RDP) to appear and work;
+  # not pulled in by desktopManager.gnome.enable on its own.
+  services.gnome.gnome-remote-desktop.enable = true;
   environment.gnome.excludePackages = with pkgs; [gnome-tour gnome-user-docs];
 
   # Nvidia driver
@@ -84,7 +87,10 @@
   hardware.nvidia.open = false;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.nvidiaSettings = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  # "displaylink" drives the Dell D6000 Universal Dock's DisplayLink chip
+  # (it's not a Thunderbolt/DP-alt-mode dock, so monitors need this driver
+  # even though the dock's other USB functions work without it).
+  services.xserver.videoDrivers = ["nvidia" "displaylink"];
 
   # Without this, the proprietary driver doesn't save/restore VRAM contents
   # across suspend/resume, so waking from suspend produces a corrupted
@@ -97,6 +103,11 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Thunderbolt/USB-C dock (e.g. Dell WD19/WD22TB4) device authorization;
+  # GNOME's Settings > Thunderbolt panel needs this running to approve and
+  # connect the dock.
+  services.hardware.bolt.enable = true;
 
   # Tailscale VPN
   services.tailscale.enable = true;

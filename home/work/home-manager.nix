@@ -11,7 +11,7 @@
 
   imports = [
     ../lukas/packages.nix
-    ../lukas/git.nix
+    ./git.nix
     ../lukas/bash.nix
     ./micromamba.nix
     ./apps.nix

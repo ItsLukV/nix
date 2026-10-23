@@ -63,6 +63,14 @@ in
       switch-applications-backward = [ ];
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
+
+      # Free up Ctrl+Alt+Up/Down (and the Shift variant) which GNOME uses
+      # for workspace switching by default — same combo VS Code wants for
+      # editor.action.insertCursorAbove/Below.
+      switch-to-workspace-up = [ ];
+      switch-to-workspace-down = [ ];
+      move-to-workspace-up = [ ];
+      move-to-workspace-down = [ ];
     };
   };
 }
