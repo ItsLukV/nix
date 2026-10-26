@@ -38,6 +38,7 @@
         # from a GUI launcher may not inherit home-manager's session vars.
         "rust-analyzer.cargo.sysrootSrc" = "${pkgs.rustPlatform.rustLibSrc}";
         "python.analysis.typeCheckingMode" = "basic";
+        "explorer.confirmDelete" = false;
       };
     };
   };
