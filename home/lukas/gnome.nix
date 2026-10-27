@@ -48,6 +48,10 @@ in
 
     "org/gnome/shell/extensions/dash-to-panel" = {
       multi-monitors = true;
+      # Each panel only shows apps with windows on the current workspace
+      # and on that panel's monitor.
+      isolate-workspaces = true;
+      isolate-monitors = true;
     };
 
     # Built-in GNOME screenshot UI: region/window/full capture with clipboard copy
