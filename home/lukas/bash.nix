@@ -28,6 +28,8 @@ in {
       hms = "home-manager switch --flake ${flakePath}#$(hostname)";
     };
     initExtra = ''
+      export LESS="-FR --mouse --wheel-lines=3"
+
       PS1="\[\033[32m\][\u@\h:\w]\[\033[00m\] $ "
 
       GIT_PROMPT_ONLY_IN_REPO=1
