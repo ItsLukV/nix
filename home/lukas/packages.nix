@@ -35,7 +35,6 @@
     # android-studio
     scrcpy
     gnomeExtensions.gsconnect
-    kdePackages.dolphin
     ungoogled-chromium
     zed-editor
     newWallpaperScript
