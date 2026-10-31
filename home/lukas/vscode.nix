@@ -23,6 +23,8 @@
         charliermarsh.ruff
         tamasfe.even-better-toml
         ms-python.mypy-type-checker
+        ionide.ionide-fsharp
+        ms-dotnettools.csharp
       ];
 
       # Keep settings simple & top-level (not profiles.*)
@@ -38,6 +40,7 @@
         # from a GUI launcher may not inherit home-manager's session vars.
         "rust-analyzer.cargo.sysrootSrc" = "${pkgs.rustPlatform.rustLibSrc}";
         "python.analysis.typeCheckingMode" = "basic";
+        "FSharp.dotnetRoot" = "${pkgs.dotnet-sdk_10}/share/dotnet";
         "explorer.confirmDelete" = false;
       };
     };

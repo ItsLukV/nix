@@ -18,6 +18,9 @@
     rustfmt
     clippy
     rust-analyzer
+    dotnet-sdk_10
+    fsautocomplete
+    fantomas
     nodejs
   ];
   gui = with pkgs; [
@@ -62,4 +65,7 @@ in {
   # rustc/cargo from nixpkgs don't bundle the stdlib source; rust-analyzer
   # needs it to resolve std/core, so point it at rustPlatform's copy.
   home.sessionVariables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+  # Lets tools that look for the SDK root (Ionide, fsautocomplete, dotnet tools)
+  # find the nix-provided SDK instead of probing /usr/share/dotnet.
+  home.sessionVariables.DOTNET_ROOT = "${pkgs.dotnet-sdk_10}/share/dotnet";
 }

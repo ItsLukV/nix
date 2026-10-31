@@ -45,6 +45,7 @@
           rust.enable = true;
           go.enable = true;
           clang.enable = true;
+          fsharp.enable = true;
         };
         options = {
           tabstop = 2;
