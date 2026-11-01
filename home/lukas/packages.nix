@@ -33,7 +33,20 @@
     vesktop
     prismlauncher
     # waybar
-    spotify
+    # Force XWayland: on native Wayland GNOME draws no titlebar, so Spotify
+    # falls back to Chromium's plain built-in one. Under X11 Mutter draws the
+    # normal Adwaita titlebar. NIXOS_OZONE_WL must be unset too, since the
+    # nixpkgs wrapper unsets DISPLAY when it's 1.
+    (symlinkJoin {
+      name = "spotify";
+      paths = [ spotify ];
+      nativeBuildInputs = [ makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/spotify \
+          --unset NIXOS_OZONE_WL \
+          --add-flags "--ozone-platform=x11"
+      '';
+    })
     pinta
     # android-studio
     scrcpy
