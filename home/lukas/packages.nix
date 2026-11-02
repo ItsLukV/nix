@@ -22,6 +22,7 @@
     fsautocomplete
     fantomas
     nodejs
+    gh
   ];
   gui = with pkgs; [
     # Force XWayland: native Wayland Electron can't grab global hotkeys, so
@@ -53,6 +54,7 @@
     gnomeExtensions.gsconnect
     ungoogled-chromium
     zed-editor
+    jetbrains.pycharm
     newWallpaperScript
     gnome-text-editor
     dbeaver-bin
@@ -75,6 +77,9 @@ in {
       "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
     };
   };
+  # GNOME apps rewrite mimeapps.list as a regular file whenever a default is
+  # changed in the UI, which makes home-manager activation refuse to clobber it.
+  xdg.configFile = lib.mkIf (!isWSL) { "mimeapps.list".force = true; };
   # rustc/cargo from nixpkgs don't bundle the stdlib source; rust-analyzer
   # needs it to resolve std/core, so point it at rustPlatform's copy.
   home.sessionVariables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
