@@ -9,6 +9,7 @@
       github.user = "lvWavepiston";
       color.ui = true;
       init.defaultBranch = "main";
+      url."git@github.com:".insteadOf = "https://github.com/";
     };
 	};
 }
