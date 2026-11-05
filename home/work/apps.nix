@@ -7,6 +7,10 @@ in {
   home.packages = with pkgs; [
     teams-for-linux
     onedrive
+    libreoffice
+    hunspell
+    hunspellDicts.da_DK
+    hunspellDicts.en_US
   ];
 
   # Outlook has no native Linux build, so run it as an app-mode Chromium
