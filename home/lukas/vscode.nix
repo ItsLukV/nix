@@ -25,6 +25,7 @@
         ms-python.mypy-type-checker
         ionide.ionide-fsharp
         ms-dotnettools.csharp
+        anthropic.claude-code
       ];
 
       # Keep settings simple & top-level (not profiles.*)
